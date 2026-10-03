@@ -1,0 +1,282 @@
+<div class="calendario-page">
+
+  <!-- =========================================
+       MENU LATERAL
+  ========================================= -->
+
+  <aside class="profile-sidebar">
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaMeuPerfil()"
+    >
+      <i class="bi bi-person"></i>
+      <span>Editar Perfil</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaTitulosSeguidos()"
+    >
+      <i class="bi bi-bookmark"></i>
+      <span>Títulos Seguidos</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaUsuariosSeguidos()"
+    >
+      <i class="bi bi-person-plus"></i>
+      <span>Usuários Seguidos</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaGruposSeguidos()"
+    >
+      <i class="bi bi-people"></i>
+      <span>Grupos Seguidos</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaHistorico()"
+    >
+      <i class="bi bi-clock-history"></i>
+      <span>Histórico de Leitura</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaColecoes()"
+    >
+      <i class="bi bi-collection"></i>
+      <span>Coleções</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaNotificacoes()"
+    >
+      <i class="bi bi-bell"></i>
+      <span>Notificações</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaMinhasPublicacoes()"
+    >
+      <i class="bi bi-file-earmark-text"></i>
+      <span>Minhas Publicações</span>
+    </button>
+
+    <button
+      type="button"
+      class="sidebar-item"
+      (click)="irParaConfiguracoes()"
+    >
+      <i class="bi bi-gear"></i>
+      <span>Configurações</span>
+    </button>
+
+  </aside>
+
+
+  <!-- =========================================
+       CONTEÚDO
+  ========================================= -->
+
+  <main class="calendario-content">
+
+    <div class="calendario-header">
+
+      <h1>Calendário</h1>
+
+      <p>
+        Organize seus horários e programe suas atividades de estudo.
+      </p>
+
+    </div>
+
+
+    <!-- =========================================
+         MESES
+    ========================================= -->
+
+    <section class="meses-section">
+
+      <div class="meses-header">
+
+        <h2>
+          {{ anoSelecionado }}
+        </h2>
+
+      </div>
+
+
+      <div class="meses-list">
+
+        <button
+          *ngFor="let mes of meses; let i = index"
+          type="button"
+          class="mes"
+          [class.active]="mesSelecionado === i"
+          (click)="selecionarMes(i)"
+        >
+          {{ mes }}
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SEMANA
+    ========================================= -->
+
+    <section class="semana-section">
+
+      <div class="semana-topo">
+
+        <div>
+
+          <h2>Semana</h2>
+
+          <span>
+            {{ textoSemana }}
+          </span>
+
+        </div>
+
+
+        <div class="semana-navegacao">
+
+          <button
+            type="button"
+            class="nav-button"
+            title="Semana anterior"
+            (click)="semanaAnterior()"
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+
+          <button
+            type="button"
+            class="hoje-button"
+            (click)="irParaHoje()"
+          >
+            Hoje
+          </button>
+
+
+          <button
+            type="button"
+            class="nav-button"
+            title="Próxima semana"
+            (click)="proximaSemana()"
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================================
+           GRADE
+      ========================================= -->
+
+      <div class="semana-scroll">
+
+        <div class="semana-calendar">
+
+
+          <!-- HORÁRIOS -->
+
+          <div class="horarios">
+
+            <div class="horario-vazio"></div>
+
+            <div
+              class="horario"
+              *ngFor="let horario of horarios"
+            >
+              {{ horario }}
+            </div>
+
+          </div>
+
+
+          <!-- DIAS -->
+
+          <div
+            class="dia"
+            *ngFor="let dia of diasSemana"
+            [class.dia-hoje]="ehHoje(dia.data)"
+            [class.dia-feriado]="obterFeriado(dia.data)"
+          >
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="dia-header">
+
+              <strong>
+                {{ dia.nome }}
+              </strong>
+
+              <span>
+                {{ dia.numero }}
+              </span>
+
+            </div>
+
+
+            <!-- FERIADO -->
+
+            <div
+              class="feriado"
+              *ngIf="obterFeriado(dia.data) as feriado"
+              [title]="feriado"
+            >
+
+              <i class="bi bi-calendar-event"></i>
+
+              <span>
+                {{ feriado }}
+              </span>
+
+            </div>
+
+
+            <!-- 24 HORAS -->
+
+            <div
+              class="horario-cell"
+              *ngFor="let horario of horarios"
+              [title]="dia.nome + ' - ' + horario"
+            >
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

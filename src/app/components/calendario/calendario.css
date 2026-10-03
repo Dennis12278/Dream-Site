@@ -1,0 +1,479 @@
+/* =========================================
+   PÁGINA
+========================================= */
+
+.calendario-page {
+    width: 100%;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    background: #20272b;
+    color: #e8edf0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   MENU LATERAL
+========================================= */
+
+.profile-sidebar {
+    width: 350px;
+    min-width: 350px;
+    min-height: calc(100vh - 90px);
+    padding: 35px 25px 35px 48px;
+    box-sizing: border-box;
+    background: #20272b;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+/* =========================================
+   ITENS DO MENU
+========================================= */
+
+.sidebar-item {
+    width: 323px;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #aebbc2;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+}
+
+.sidebar-item i {
+    width: 24px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.sidebar-item:hover {
+    background: #2b353a;
+    color: #e9edef;
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.calendario-content {
+    flex: 1;
+    min-width: 0;
+    padding: 45px 45px 60px 38px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.calendario-header {
+    margin-bottom: 30px;
+}
+
+.calendario-header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.calendario-header p {
+    margin: 8px 0 0;
+    color: #8d999f;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   MESES
+========================================= */
+
+.meses-section {
+    background: #252e33;
+    border: 1px solid #354047;
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 25px;
+}
+
+.meses-header {
+    margin-bottom: 15px;
+}
+
+.meses-header h2 {
+    margin: 0;
+    color: #e9edef;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.meses-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.mes {
+    border: 1px solid #354047;
+    border-radius: 6px;
+    background: #1d2428;
+    color: #9da9af;
+    padding: 10px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.mes:hover {
+    background: #2b353a;
+    color: #e9edef;
+}
+
+.mes.active {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   SEMANA
+========================================= */
+
+.semana-section {
+    background: #252e33;
+    border: 1px solid #354047;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.semana-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px;
+    border-bottom: 1px solid #354047;
+}
+
+.semana-topo h2 {
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.semana-topo span {
+    color: #87939a;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   NAVEGAÇÃO
+========================================= */
+
+.semana-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-button,
+.hoje-button {
+    border: 1px solid #414d54;
+    border-radius: 6px;
+    background: #303a40;
+    color: #dce2e5;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.nav-button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hoje-button {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 13px;
+}
+
+.nav-button:hover,
+.hoje-button:hover {
+    background: #39454c;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+.semana-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* =========================================
+   GRADE
+========================================= */
+
+.semana-calendar {
+    display: grid;
+    grid-template-columns: 65px repeat(7, minmax(100px, 1fr));
+    min-width: 800px;
+}
+
+
+/* =========================================
+   COLUNA DE HORÁRIOS
+========================================= */
+
+.horarios {
+    background: #20272b;
+    border-right: 1px solid #354047;
+}
+
+.horario-vazio {
+    height: 58px;
+    border-bottom: 1px solid #354047;
+    box-sizing: border-box;
+}
+
+.horario {
+    height: 55px;
+    padding: 9px 8px;
+    box-sizing: border-box;
+    color: #7f8b92;
+    font-size: 11px;
+    text-align: right;
+    border-bottom: 1px solid #303a40;
+}
+
+
+/* =========================================
+   DIA
+========================================= */
+
+.dia {
+    min-width: 100px;
+    border-right: 1px solid #354047;
+    position: relative;
+}
+
+.dia:last-child {
+    border-right: none;
+}
+
+
+/* =========================================
+   CABEÇALHO DO DIA
+========================================= */
+
+.dia-header {
+    height: 58px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: #20272b;
+    border-bottom: 1px solid #354047;
+}
+
+.dia-header strong {
+    color: #8d999f;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.dia-header span {
+    color: #e9edef;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   HOJE
+========================================= */
+
+.dia-hoje .dia-header {
+    background: #303a40;
+}
+
+.dia-hoje .dia-header strong,
+.dia-hoje .dia-header span {
+    color: #8b5cf6;
+}
+
+.dia-hoje {
+    box-shadow: inset 0 0 0 1px #8b5cf6;
+}
+
+
+/* =========================================
+   FERIADO
+========================================= */
+
+.feriado {
+    position: absolute;
+    top: 61px;
+    left: 4px;
+    right: 4px;
+    z-index: 5;
+
+    min-height: 32px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 6px;
+
+    box-sizing: border-box;
+
+    background: #3a3038;
+    border: 1px solid #65465c;
+    border-radius: 5px;
+
+    color: #e6c6dd;
+
+    font-size: 9px;
+    line-height: 1.2;
+
+    overflow: hidden;
+}
+
+.feriado i {
+    flex-shrink: 0;
+    font-size: 10px;
+}
+
+.feriado span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   CÉLULAS DAS HORAS
+========================================= */
+
+.horario-cell {
+    height: 55px;
+    box-sizing: border-box;
+    background: #252e33;
+    border-bottom: 1px solid #303a40;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+
+.horario-cell:hover {
+    background: #2b353a;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .profile-sidebar {
+        width: 280px;
+        min-width: 280px;
+        padding-left: 25px;
+    }
+
+    .sidebar-item {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .meses-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .calendario-page {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        padding: 15px;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .sidebar-item {
+        width: auto;
+        min-width: 170px;
+    }
+
+    .calendario-content {
+        padding: 30px 20px;
+    }
+
+    .meses-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .calendario-content {
+        padding: 20px 15px;
+    }
+
+    .meses-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .semana-topo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .semana-navegacao {
+        width: 100%;
+    }
+
+    .nav-button {
+        flex: 1;
+    }
+
+    .hoje-button {
+        flex: 2;
+    }
+
+}

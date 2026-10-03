@@ -1,0 +1,21 @@
+.colecoes-page {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  background: #1f2428;
+}
+
+.colecoes-content {
+  flex: 1;
+  padding: 50px;
+  color: #ffffff;
+}
+
+.colecoes-content h1 {
+  margin-bottom: 15px;
+  font-size: 32px;
+}
+
+.colecoes-content p {
+  color: #aebbc2;
+  font-size: 17px;
+}

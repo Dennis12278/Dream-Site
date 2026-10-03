@@ -1,0 +1,437 @@
+<div class="home-page">
+
+    <!-- =====================================================
+         HISTÓRICO DE LEITURA
+    ====================================================== -->
+
+    <section class="home-history">
+
+        <!-- BARRA DO HISTÓRICO -->
+
+        <div class="history-bar">
+
+            <div class="history-title">
+                <i class="bi bi-clock-history"></i>
+                <span>Histórico de Leitura</span>
+            </div>
+
+            <div class="history-actions">
+
+                <!-- SETA ANTERIOR -->
+
+                <button
+                    type="button"
+                    class="history-arrow"
+                    (click)="paginaAnteriorHistorico()"
+                    [disabled]="paginaHistorico === 0"
+                >
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+
+                <!-- SETA PRÓXIMA -->
+
+                <button
+                    type="button"
+                    class="history-arrow"
+                    (click)="proximaPaginaHistorico()"
+                    [disabled]="paginaHistorico === 1"
+                >
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
+
+                <!-- TRÊS PONTINHOS -->
+
+                <button
+                    type="button"
+                    class="history-more"
+                    (click)="abrirMenuHistorico($event)"
+                >
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+
+                <!-- MENU -->
+
+                <div
+                    class="history-menu"
+                    *ngIf="menuHistoricoAberto"
+                >
+
+                    <button
+                        type="button"
+                        (click)="irParaHistorico()"
+                    >
+                        Ver todos
+                    </button>
+
+                    <button
+                        type="button"
+                        (click)="minimizarHistorico()"
+                    >
+                        Minimizar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HISTÓRICO ABERTO
+        ================================================== -->
+
+        <div
+            class="history-content"
+            *ngIf="!historicoMinimizado"
+        >
+
+            <div class="history-cards">
+
+                <div
+                    class="history-card"
+                    *ngFor="let leitura of leiturasExibidas"
+                >
+
+                    <!-- CAPA -->
+
+                    <div class="history-cover">
+
+                        <div
+                            class="history-progress"
+                            [style.--progresso]="leitura.progresso + '%'"
+                        >
+
+                            <div class="history-progress-number">
+                                {{ leitura.progresso }}%
+                            </div>
+
+                        </div>
+
+                        <i class="bi bi-book"></i>
+
+                    </div>
+
+
+                    <!-- INFORMAÇÕES -->
+
+                    <div class="history-info">
+
+                        <h3>
+                            {{ leitura.titulo }}
+                        </h3>
+
+                        <div class="history-details">
+
+                            <span>
+                                <i class="bi bi-eye"></i>
+                                {{ leitura.lido }} / {{ leitura.total }}
+                            </span>
+
+                            <span>
+                                {{ leitura.lidoHa }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             HISTÓRICO MINIMIZADO
+        ================================================== -->
+
+        <div
+            class="history-minimized"
+            *ngIf="historicoMinimizado"
+        >
+
+            <span>Histórico de Leitura</span>
+
+            <button
+                type="button"
+                class="history-show"
+                (click)="mostrarHistorico()"
+            >
+                MOSTRAR
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BANNER PRINCIPAL
+    ====================================================== -->
+
+    <section class="home-banner">
+
+        <div class="banner-content">
+
+            <span class="banner-label">
+                DREAM
+            </span>
+
+            <h1>
+                Seu espaço para estudar, organizar e aprender.
+            </h1>
+
+            <p>
+                Encontre conteúdos, acompanhe suas leituras
+                e organize sua rotina de estudos.
+            </p>
+
+            <div class="banner-buttons">
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    (click)="irParaTitulos()"
+                >
+                    <i class="bi bi-book"></i>
+                    Explorar conteúdos
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    (click)="irParaCalendario()"
+                >
+                    <i class="bi bi-calendar3"></i>
+                    Meu calendário
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTINUE ESTUDANDO
+    ====================================================== -->
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Continue estudando
+                </h2>
+
+                <p>
+                    Retome seus conteúdos recentes.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="see-more"
+                (click)="irParaTitulos()"
+            >
+                Ver todos
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="content-grid">
+
+            <div class="content-card">
+
+                <div class="content-cover">
+                    <i class="bi bi-book"></i>
+                </div>
+
+                <div class="content-info">
+
+                    <h3>
+                        Seus conteúdos aparecerão aqui
+                    </h3>
+
+                    <p>
+                        Comece a estudar para acompanhar seu progresso.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="content-cover">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+
+                <div class="content-info">
+
+                    <h3>
+                        Resumos e anotações
+                    </h3>
+
+                    <p>
+                        Organize seus materiais de estudo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <div class="content-cover">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div class="content-info">
+
+                    <h3>
+                        Histórico de leitura
+                    </h3>
+
+                    <p>
+                        Continue de onde você parou.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACESSOS RÁPIDOS
+    ====================================================== -->
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Acessos rápidos
+                </h2>
+
+                <p>
+                    Acesse rapidamente suas ferramentas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-grid">
+
+            <!-- TÍTULOS -->
+
+            <button
+                type="button"
+                class="quick-card"
+                (click)="irParaTitulos()"
+            >
+
+                <div class="quick-icon">
+                    <i class="bi bi-bookmark"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Títulos Seguidos
+                    </h3>
+
+                    <p>
+                        Veja os títulos que você acompanha.
+                    </p>
+
+                </div>
+
+                <i class="bi bi-chevron-right arrow"></i>
+
+            </button>
+
+
+            <!-- CALENDÁRIO -->
+
+            <button
+                type="button"
+                class="quick-card"
+                (click)="irParaCalendario()"
+            >
+
+                <div class="quick-icon">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Calendário
+                    </h3>
+
+                    <p>
+                        Organize seus horários e estudos.
+                    </p>
+
+                </div>
+
+                <i class="bi bi-chevron-right arrow"></i>
+
+            </button>
+
+
+            <!-- PERFIL -->
+
+            <button
+                type="button"
+                class="quick-card"
+                (click)="irParaMeuPerfil()"
+            >
+
+                <div class="quick-icon">
+                    <i class="bi bi-person"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Meu Perfil
+                    </h3>
+
+                    <p>
+                        Gerencie suas informações.
+                    </p>
+
+                </div>
+
+                <i class="bi bi-chevron-right arrow"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>

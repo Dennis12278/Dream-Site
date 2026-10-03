@@ -1,0 +1,236 @@
+<div class="titulos-page">
+
+    <!-- =========================================
+         MENU LATERAL
+    ========================================== -->
+
+  <app-sidebar></app-sidebar>
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+    ========================================== -->
+
+    <main class="titulos-content">
+
+        <!-- TÍTULO -->
+
+        <div class="page-title">
+
+            <h1>Títulos Seguidos</h1>
+
+            <p>
+                Títulos que você acompanha no DREAM.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             PESQUISA
+        ====================================== -->
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    type="text"
+                    placeholder="Pesquisar nos títulos seguidos..."
+                    [(ngModel)]="pesquisa"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="filter-button"
+            >
+
+                <i class="bi bi-sliders"></i>
+
+                Filtros
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             STATUS
+        ====================================== -->
+
+        <div class="status-tabs">
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Todos'"
+                (click)="selecionarFiltro('Todos')"
+            >
+                Todos
+            </button>
+
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Lendo'"
+                (click)="selecionarFiltro('Lendo')"
+            >
+                Lendo
+            </button>
+
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Concluídos'"
+                (click)="selecionarFiltro('Concluídos')"
+            >
+                Concluídos
+            </button>
+
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Em espera'"
+                (click)="selecionarFiltro('Em espera')"
+            >
+                Em espera
+            </button>
+
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Planejo ler'"
+                (click)="selecionarFiltro('Planejo ler')"
+            >
+                Planejo ler
+            </button>
+
+
+            <button
+                type="button"
+                class="status-tab"
+                [class.active]="filtroAtual === 'Abandonados'"
+                (click)="selecionarFiltro('Abandonados')"
+            >
+                Abandonados
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             ORDENAÇÃO
+        ====================================== -->
+
+        <div class="ordenacao">
+
+            <span>Ordenar por:</span>
+
+
+            <button
+                type="button"
+                class="ordenacao-button"
+                [class.active]="ordenacaoAtual === 'Adicionados recentemente'"
+                (click)="selecionarOrdenacao('Adicionados recentemente')"
+            >
+                Adicionados recentemente
+            </button>
+
+
+            <button
+                type="button"
+                class="ordenacao-button"
+                [class.active]="ordenacaoAtual === 'Lidos recentemente'"
+                (click)="selecionarOrdenacao('Lidos recentemente')"
+            >
+                Lidos recentemente
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             TÍTULOS
+        ====================================== -->
+
+        <section class="titulos-grid">
+
+            <!-- CARDS DINÂMICOS -->
+
+            <article
+                class="titulo-card"
+                *ngFor="let titulo of titulosFiltrados"
+                (click)="abrirTitulo(titulo)"
+            >
+
+                <!-- CAPA -->
+
+                <div class="titulo-capa">
+
+                    <img
+                        [src]="titulo.capa"
+                        [alt]="'Capa de ' + titulo.titulo"
+                    >
+
+                </div>
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="titulo-info">
+
+                    <h2>
+                        {{ titulo.titulo }}
+                    </h2>
+
+
+                    <span class="titulo-status">
+                        {{ titulo.status }}
+                    </span>
+
+
+                    <!-- MOSTRA SOMENTE QUANDO
+                         LIDOS RECENTEMENTE -->
+
+                    <span
+                        class="titulo-leitura"
+                        *ngIf="ordenacaoAtual === 'Lidos recentemente'"
+                    >
+                        {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 SEM RESULTADOS
+            ================================== -->
+
+            <div
+                class="sem-resultados"
+                *ngIf="titulosFiltrados.length === 0"
+            >
+
+                <i class="bi bi-book"></i>
+
+                <p>
+                    Nenhum título encontrado.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

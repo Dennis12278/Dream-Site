@@ -1,0 +1,880 @@
+/* =========================================
+   PÁGINA
+========================================= */
+
+.titulos-page {
+
+    min-height: 100vh;
+
+    background: #20282d;
+
+    color: #d4d9dd;
+
+    padding: 30px 35px;
+
+    display: flex;
+
+    gap: 40px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =========================================
+   MENU LATERAL
+========================================= */
+
+.profile-sidebar {
+
+    width: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+
+}
+
+
+.sidebar-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 15px 18px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #aeb8bf;
+
+    font-size: 17px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    border-radius: 7px;
+
+    transition: 0.2s;
+
+}
+
+
+.sidebar-item i {
+
+    width: 20px;
+
+    color: #81909a;
+
+    font-size: 18px;
+
+}
+
+
+.sidebar-item:hover {
+
+    background: #313c42;
+
+    color: white;
+
+}
+
+
+.sidebar-item:hover i {
+
+    color: #70c9df;
+
+}
+
+
+.sidebar-item.active {
+
+    background: #3a464d;
+
+    color: white;
+
+}
+
+
+.sidebar-item.active i {
+
+    color: #70c9df;
+
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.titulos-content {
+
+    flex: 1;
+
+    min-width: 0;
+
+    max-width: 1200px;
+
+}
+
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.page-title {
+
+    margin-bottom: 28px;
+
+}
+
+
+.page-title h1 {
+
+    margin: 0 0 8px;
+
+    color: white;
+
+    font-size: 30px;
+
+}
+
+
+.page-title p {
+
+    margin: 0;
+
+    color: #87939c;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   PESQUISA
+========================================= */
+
+.search-area {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.search-box {
+
+    flex: 1;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    background: #2b353a;
+
+    border: 1px solid #354147;
+
+    border-radius: 7px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+}
+
+
+.search-box i {
+
+    color: #7f8b93;
+
+    font-size: 18px;
+
+}
+
+
+.search-box input {
+
+    flex: 1;
+
+    height: 100%;
+
+    margin-left: 12px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: #707c84;
+
+}
+
+
+.filter-button {
+
+    height: 48px;
+
+    padding: 0 20px;
+
+    border: 1px solid #354147;
+
+    border-radius: 7px;
+
+    background: #2b353a;
+
+    color: #cbd1d5;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.filter-button:hover {
+
+    background: #354047;
+
+}
+
+
+/* =========================================
+   ABAS DE STATUS
+========================================= */
+
+.status-tabs {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    border-bottom: 1px solid #354147;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 22px;
+
+    overflow-x: auto;
+
+}
+
+
+.status-tab {
+
+    border: none;
+
+    background: transparent;
+
+    color: #87939c;
+
+    padding: 10px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+}
+
+
+.status-tab:hover {
+
+    color: white;
+
+    background: #2d383e;
+
+}
+
+
+.status-tab.active {
+
+    background: #3a464d;
+
+    color: white;
+
+}
+
+
+/* =========================================
+   ORDENAÇÃO
+========================================= */
+
+.ordenacao {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+
+    color: #7f8b93;
+
+    font-size: 14px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.ordenacao-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #9da7ad;
+
+    padding: 7px 10px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+
+.ordenacao-button:hover {
+
+    color: white;
+
+    background: #2d383e;
+
+}
+
+
+.ordenacao-button.active {
+
+    color: #70c9df;
+
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.titulos-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 30px 24px;
+
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.titulo-card {
+
+    min-width: 0;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.titulo-card:hover {
+
+    transform: translateY(-4px);
+
+}
+
+
+/* =========================================
+   CAPA
+========================================= */
+
+.titulo-capa {
+
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
+
+    background: #2b353a;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    margin-bottom: 13px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =========================================
+   PLACEHOLDER DA CAPA
+========================================= */
+
+.capa-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #354047;
+
+}
+
+
+.titulo-capa img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+}
+
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.titulo-info {
+
+    min-width: 0;
+
+}
+
+
+.titulo-info h2 {
+
+    margin: 0 0 6px;
+
+    color: #e4e8eb;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.titulo-status {
+
+    display: block;
+
+    color: #87939c;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================
+   TEMPO DA ÚLTIMA LEITURA
+========================================= */
+
+.titulo-leitura {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #70c9df;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   SEM RESULTADOS
+========================================= */
+
+.sem-resultados {
+
+    grid-column: 1 / -1;
+
+    min-height: 220px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #7f8b93;
+
+    background: #2b353a;
+
+    border-radius: 8px;
+
+}
+
+
+.sem-resultados i {
+
+    font-size: 35px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.sem-resultados p {
+
+    margin: 0;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .titulos-page {
+
+        padding: 25px;
+
+    }
+
+
+    .profile-sidebar {
+
+        width: 230px;
+
+    }
+
+
+    .titulos-grid {
+
+        grid-template-columns:
+            repeat(auto-fill, minmax(150px, 1fr));
+
+    }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .titulos-page {
+
+        flex-direction: column;
+
+        padding: 20px;
+
+    }
+
+
+    .profile-sidebar {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .sidebar-item {
+
+        font-size: 14px;
+
+        padding: 12px;
+
+    }
+
+
+    .search-area {
+
+        flex-direction: column;
+
+    }
+
+
+    .filter-button {
+
+        justify-content: center;
+
+    }
+
+
+    .titulos-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 20px 14px;
+
+    }
+
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.titulo-card {
+
+    min-width: 0;
+
+    cursor: pointer;
+
+}
+
+
+.titulo-capa {
+
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
+
+    background: #2b353a;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    margin-bottom: 12px;
+
+}
+
+
+.capa-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #354047;
+
+}
+
+
+.capa-placeholder i {
+
+    color: #66747d;
+
+    font-size: 42px;
+
+}
+
+
+.titulo-card:hover .titulo-capa {
+
+    transform: translateY(-3px);
+
+}
+
+
+.titulo-capa {
+
+    transition: 0.2s;
+
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.titulo-info h2 {
+
+    margin: 0 0 7px;
+
+    color: #e4e8eb;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.titulo-status {
+
+    color: #84919a;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .titulos-page {
+
+        padding: 25px;
+
+    }
+
+    .profile-sidebar {
+
+        width: 230px;
+
+    }
+
+    .titulos-grid {
+
+        grid-template-columns:
+            repeat(auto-fill, minmax(150px, 1fr));
+
+    }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .titulos-page {
+
+        flex-direction: column;
+
+        padding: 20px;
+
+    }
+
+
+    .profile-sidebar {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .sidebar-item {
+
+        font-size: 14px;
+
+        padding: 12px;
+
+    }
+
+
+    .search-area {
+
+        flex-direction: column;
+
+    }
+
+
+    .filter-button {
+
+        justify-content: center;
+
+    }
+
+
+    .titulos-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 18px;
+
+    }
+
+}
