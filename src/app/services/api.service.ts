@@ -18,5 +18,13 @@ export class ApiService {
   criarDocumento(documento: any) {
     return this.http.post(this.apiUrl + '/Documento', documento);
   }
+  
+  listarNotificacoes() {
+  return this.http.get<any[]>(this.apiUrl + '/Notificacao');
+}
+
+lerNotificacao(id: number) {
+  return this.http.put(this.apiUrl + '/Notificacao/Ler/' + id, {});
+}
 
 }

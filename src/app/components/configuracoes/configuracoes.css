@@ -123,31 +123,6 @@
     line-height: 1.5;
 }
 
-
-/* =========================================
-   AVATAR
-========================================= */
-
-.section-action {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.avatar {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #3d617c;
-    color: #ffffff;
-    font-size: 21px;
-    font-weight: 600;
-}
-
-
 /* =========================================
    BOTÕES
 ========================================= */
@@ -232,13 +207,13 @@ input:focus {
     min-width: 0;
 }
 
-
 /* =========================================
    SENHA
 ========================================= */
 
 .password-area {
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .password-form {
@@ -250,6 +225,11 @@ input:focus {
 
 .password-form input {
     width: 100%;
+}
+
+.password-area .save-area {
+    width: 100%;
+    margin-top: 5px;
 }
 
 

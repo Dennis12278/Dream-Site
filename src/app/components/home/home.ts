@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { SidebarComponent } from '../sidebar/sidebar';
 
 interface Leitura {
   titulo: string;
@@ -15,7 +16,10 @@ interface Leitura {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    SidebarComponent
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -24,7 +28,9 @@ export class Home {
   documentos: any[] = [];
 
   historicoMinimizado = false;
+
   menuHistoricoAberto = false;
+
   paginaHistorico = 0;
 
   leituras: Leitura[] = [
@@ -86,6 +92,7 @@ export class Home {
     this.carregarDocumentos();
   }
 
+
   carregarDocumentos(): void {
 
     this.apiService.listarDocumentos().subscribe({
@@ -105,11 +112,17 @@ export class Home {
       },
 
       error: erro => {
-        console.error('Erro ao buscar documentos:', erro);
+
+        console.error(
+          'Erro ao buscar documentos:',
+          erro
+        );
+
       }
     });
 
   }
+
 
   tempoPublicacao(data: string): string {
 
@@ -118,104 +131,154 @@ export class Home {
     }
 
     const agora = new Date().getTime();
+
     const publicacao = new Date(data).getTime();
 
     const diferenca = agora - publicacao;
 
-    const minutos = Math.floor(diferenca / 60000);
+    const minutos = Math.floor(
+      diferenca / 60000
+    );
 
     if (minutos < 1) {
       return 'agora';
     }
 
     if (minutos < 60) {
-      return minutos + (minutos === 1 ? ' minuto atrás' : ' minutos atrás');
+      return minutos +
+        (minutos === 1
+          ? ' minuto atrás'
+          : ' minutos atrás');
     }
 
-    const horas = Math.floor(minutos / 60);
+    const horas = Math.floor(
+      minutos / 60
+    );
 
     if (horas < 24) {
-      return horas + (horas === 1 ? ' hora atrás' : ' horas atrás');
+      return horas +
+        (horas === 1
+          ? ' hora atrás'
+          : ' horas atrás');
     }
 
-    const dias = Math.floor(horas / 24);
+    const dias = Math.floor(
+      horas / 24
+    );
 
     if (dias < 30) {
-      return dias + (dias === 1 ? ' dia atrás' : ' dias atrás');
+      return dias +
+        (dias === 1
+          ? ' dia atrás'
+          : ' dias atrás');
     }
 
-    const meses = Math.floor(dias / 30);
+    const meses = Math.floor(
+      dias / 30
+    );
 
-    return meses + (meses === 1 ? ' mês atrás' : ' meses atrás');
+    return meses +
+      (meses === 1
+        ? ' mês atrás'
+        : ' meses atrás');
   }
+
 
   irParaTitulos(): void {
     this.router.navigate(['/titulos-seguidos']);
   }
 
+
   irParaCalendario(): void {
     this.router.navigate(['/calendario']);
   }
+
 
   irParaMeuPerfil(): void {
     this.router.navigate(['/meu-perfil']);
   }
 
+
   irParaHistorico(): void {
     this.router.navigate(['/historico-leitura']);
   }
+
 
   irParaPublicacoes(): void {
     this.router.navigate(['/minhas-publicacoes']);
   }
 
+
   irParaGrupos(): void {
     this.router.navigate(['/grupos-seguidos']);
   }
+
 
   irParaColecoes(): void {
     this.router.navigate(['/colecoes']);
   }
 
+
   abrirMenuHistorico(event: MouseEvent): void {
+
     event.stopPropagation();
-    this.menuHistoricoAberto = !this.menuHistoricoAberto;
+
+    this.menuHistoricoAberto =
+      !this.menuHistoricoAberto;
   }
+
 
   fecharMenuHistorico(): void {
+
     this.menuHistoricoAberto = false;
   }
+
 
   minimizarHistorico(): void {
+
     this.historicoMinimizado = true;
+
     this.menuHistoricoAberto = false;
   }
 
+
   mostrarHistorico(): void {
+
     this.historicoMinimizado = false;
+
     this.menuHistoricoAberto = false;
   }
+
 
   proximaPaginaHistorico(): void {
 
     if (this.paginaHistorico < 1) {
+
       this.paginaHistorico++;
     }
 
   }
 
+
   paginaAnteriorHistorico(): void {
 
     if (this.paginaHistorico > 0) {
+
       this.paginaHistorico--;
     }
 
   }
 
+
   get leiturasExibidas(): Leitura[] {
 
-    const inicio = this.paginaHistorico * 5;
+    const inicio =
+      this.paginaHistorico * 5;
 
-    return this.leituras.slice(inicio, inicio + 5);
+    return this.leituras.slice(
+      inicio,
+      inicio + 5
+    );
   }
+
 }

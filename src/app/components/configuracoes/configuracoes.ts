@@ -48,7 +48,6 @@ export class Configuracoes {
       return;
     }
 
-
     if (
       this.novaSenha !== '' &&
       this.novaSenha.length < 6
@@ -58,7 +57,6 @@ export class Configuracoes {
 
       return;
     }
-
 
     alert('Alterações da conta salvas com sucesso!');
   }
@@ -71,7 +69,6 @@ export class Configuracoes {
   salvarVisibilidade(): void {
 
     alert('Preferências de visibilidade salvas com sucesso!');
-
   }
 
 
@@ -82,7 +79,6 @@ export class Configuracoes {
   salvarTema(): void {
 
     alert('Preferência de tema salva com sucesso!');
-
   }
 
 }

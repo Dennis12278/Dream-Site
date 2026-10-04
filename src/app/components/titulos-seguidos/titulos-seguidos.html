@@ -18,7 +18,9 @@
 
         <div class="page-title">
 
-            <h1>Títulos Seguidos</h1>
+            <h1>
+                Títulos Seguidos
+            </h1>
 
             <p>
                 Títulos que você acompanha no DREAM.
@@ -134,7 +136,9 @@
 
         <div class="ordenacao">
 
-            <span>Ordenar por:</span>
+            <span>
+                Ordenar por:
+            </span>
 
 
             <button
@@ -191,86 +195,23 @@
 
                 <!-- INFORMAÇÕES -->
 
-                <div class="titulo-info">
+              
 
+<div class="titulo-info">
 
-                    <h2>
-                        {{ titulo.titulo }}
-                    </h2>
+    <h2>
+        {{ titulo.titulo }}
+    </h2>
 
+    <span
+        class="titulo-leitura"
+        *ngIf="ordenacaoAtual === 'Lidos recentemente'"
+    >
+        {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
+    </span>
 
-                    <span class="titulo-status">
-                        {{ titulo.status }}
-                    </span>
+</div>
 
-
-                    <!-- MOSTRA SOMENTE QUANDO
-                         LIDOS RECENTEMENTE -->
-
-                    <span
-                        class="titulo-leitura"
-                        *ngIf="ordenacaoAtual === 'Lidos recentemente'"
-                    >
-                        {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
-                    </span>
-
-
-                    <!-- =================================
-                         AÇÕES
-                    ================================== -->
-
-                    <div class="titulo-acoes">
-
-
-                        <!-- LER -->
-
-                        <button
-                            type="button"
-                            class="acao-button"
-                            (click)="abrirTitulo(titulo); $event.stopPropagation()"
-                        >
-
-                            <i class="bi bi-book"></i>
-
-                            Ler
-
-                        </button>
-
-
-                        <!-- SEGUIR -->
-
-                        <button
-                            type="button"
-                            class="acao-button"
-                            (click)="seguirTitulo(titulo); $event.stopPropagation()"
-                        >
-
-                            <i class="bi bi-bookmark"></i>
-
-                            Seguir
-
-                        </button>
-
-
-                        <!-- COLEÇÃO -->
-
-                        <button
-                            type="button"
-                            class="acao-button"
-                            (click)="adicionarColecao(titulo); $event.stopPropagation()"
-                        >
-
-                            <i class="bi bi-plus-lg"></i>
-
-                            Coleção
-
-                        </button>
-
-
-                    </div>
-
-
-                </div>
 
             </article>
 
