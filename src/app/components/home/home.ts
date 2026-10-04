@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 interface Leitura {
   titulo: string;
@@ -14,11 +15,13 @@ interface Leitura {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
+
+  documentos: any[] = [];
 
   historicoMinimizado = false;
   menuHistoricoAberto = false;
@@ -75,7 +78,76 @@ export class Home {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.carregarDocumentos();
+  }
+
+  carregarDocumentos(): void {
+
+    this.apiService.listarDocumentos().subscribe({
+      next: documentos => {
+
+        this.documentos = documentos
+          .filter(documento => documento.publicado === true)
+          .sort((a, b) => {
+
+            const dataA = new Date(a.dataPublicacao).getTime();
+            const dataB = new Date(b.dataPublicacao).getTime();
+
+            return dataB - dataA;
+          });
+
+        this.changeDetectorRef.detectChanges();
+      },
+
+      error: erro => {
+        console.error('Erro ao buscar documentos:', erro);
+      }
+    });
+
+  }
+
+  tempoPublicacao(data: string): string {
+
+    if (!data) {
+      return '';
+    }
+
+    const agora = new Date().getTime();
+    const publicacao = new Date(data).getTime();
+
+    const diferenca = agora - publicacao;
+
+    const minutos = Math.floor(diferenca / 60000);
+
+    if (minutos < 1) {
+      return 'agora';
+    }
+
+    if (minutos < 60) {
+      return minutos + (minutos === 1 ? ' minuto atrás' : ' minutos atrás');
+    }
+
+    const horas = Math.floor(minutos / 60);
+
+    if (horas < 24) {
+      return horas + (horas === 1 ? ' hora atrás' : ' horas atrás');
+    }
+
+    const dias = Math.floor(horas / 24);
+
+    if (dias < 30) {
+      return dias + (dias === 1 ? ' dia atrás' : ' dias atrás');
+    }
+
+    const meses = Math.floor(dias / 30);
+
+    return meses + (meses === 1 ? ' mês atrás' : ' meses atrás');
+  }
 
   irParaTitulos(): void {
     this.router.navigate(['/titulos-seguidos']);
@@ -91,6 +163,18 @@ export class Home {
 
   irParaHistorico(): void {
     this.router.navigate(['/historico-leitura']);
+  }
+
+  irParaPublicacoes(): void {
+    this.router.navigate(['/minhas-publicacoes']);
+  }
+
+  irParaGrupos(): void {
+    this.router.navigate(['/grupos-seguidos']);
+  }
+
+  irParaColecoes(): void {
+    this.router.navigate(['/colecoes']);
   }
 
   abrirMenuHistorico(event: MouseEvent): void {
@@ -113,18 +197,23 @@ export class Home {
   }
 
   proximaPaginaHistorico(): void {
+
     if (this.paginaHistorico < 1) {
       this.paginaHistorico++;
     }
+
   }
 
   paginaAnteriorHistorico(): void {
+
     if (this.paginaHistorico > 0) {
       this.paginaHistorico--;
     }
+
   }
 
   get leiturasExibidas(): Leitura[] {
+
     const inicio = this.paginaHistorico * 5;
 
     return this.leituras.slice(inicio, inicio + 5);

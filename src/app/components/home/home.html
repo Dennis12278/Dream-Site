@@ -1,12 +1,72 @@
 <div class="home-page">
 
     <!-- =====================================================
+         CALENDÁRIO
+    ====================================================== -->
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Calendário</h2>
+
+                <p>
+                    Organize seus horários e atividades de estudo.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="see-more"
+                (click)="irParaCalendario()"
+            >
+                Ver mais
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+        <div
+            class="calendar-card"
+            (click)="irParaCalendario()"
+        >
+
+            <div class="calendar-icon">
+                <i class="bi bi-calendar3"></i>
+            </div>
+
+            <div class="calendar-info">
+
+                <h3>
+                    Seu calendário de estudos
+                </h3>
+
+                <p>
+                    Consulte suas atividades, horários e compromissos.
+                </p>
+
+                <button
+                    type="button"
+                    class="calendar-button"
+                    (click)="$event.stopPropagation(); irParaCalendario()"
+                >
+                    Abrir calendário
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
          HISTÓRICO DE LEITURA
     ====================================================== -->
 
     <section class="home-history">
-
-        <!-- BARRA DO HISTÓRICO -->
 
         <div class="history-bar">
 
@@ -17,8 +77,6 @@
 
             <div class="history-actions">
 
-                <!-- SETA ANTERIOR -->
-
                 <button
                     type="button"
                     class="history-arrow"
@@ -27,9 +85,6 @@
                 >
                     <i class="bi bi-chevron-left"></i>
                 </button>
-
-
-                <!-- SETA PRÓXIMA -->
 
                 <button
                     type="button"
@@ -40,9 +95,6 @@
                     <i class="bi bi-chevron-right"></i>
                 </button>
 
-
-                <!-- TRÊS PONTINHOS -->
-
                 <button
                     type="button"
                     class="history-more"
@@ -50,9 +102,6 @@
                 >
                     <i class="bi bi-three-dots-vertical"></i>
                 </button>
-
-
-                <!-- MENU -->
 
                 <div
                     class="history-menu"
@@ -80,10 +129,6 @@
         </div>
 
 
-        <!-- =================================================
-             HISTÓRICO ABERTO
-        ================================================== -->
-
         <div
             class="history-content"
             *ngIf="!historicoMinimizado"
@@ -95,8 +140,6 @@
                     class="history-card"
                     *ngFor="let leitura of leiturasExibidas"
                 >
-
-                    <!-- CAPA -->
 
                     <div class="history-cover">
 
@@ -114,9 +157,6 @@
                         <i class="bi bi-book"></i>
 
                     </div>
-
-
-                    <!-- INFORMAÇÕES -->
 
                     <div class="history-info">
 
@@ -146,16 +186,14 @@
         </div>
 
 
-        <!-- =================================================
-             HISTÓRICO MINIMIZADO
-        ================================================== -->
-
         <div
             class="history-minimized"
             *ngIf="historicoMinimizado"
         >
 
-            <span>Histórico de Leitura</span>
+            <span>
+                Histórico de Leitura
+            </span>
 
             <button
                 type="button"
@@ -171,55 +209,7 @@
 
 
     <!-- =====================================================
-         BANNER PRINCIPAL
-    ====================================================== -->
-
-    <section class="home-banner">
-
-        <div class="banner-content">
-
-            <span class="banner-label">
-                DREAM
-            </span>
-
-            <h1>
-                Seu espaço para estudar, organizar e aprender.
-            </h1>
-
-            <p>
-                Encontre conteúdos, acompanhe suas leituras
-                e organize sua rotina de estudos.
-            </p>
-
-            <div class="banner-buttons">
-
-                <button
-                    type="button"
-                    class="primary-button"
-                    (click)="irParaTitulos()"
-                >
-                    <i class="bi bi-book"></i>
-                    Explorar conteúdos
-                </button>
-
-                <button
-                    type="button"
-                    class="secondary-button"
-                    (click)="irParaCalendario()"
-                >
-                    <i class="bi bi-calendar3"></i>
-                    Meu calendário
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         CONTINUE ESTUDANDO
+         MAIS CURTIDOS
     ====================================================== -->
 
     <section class="home-section">
@@ -227,15 +217,11 @@
         <div class="section-header">
 
             <div>
-
-                <h2>
-                    Continue estudando
-                </h2>
+                <h2>Mais curtidos</h2>
 
                 <p>
-                    Retome seus conteúdos recentes.
+                    Conteúdos que estão recebendo mais curtidas.
                 </p>
-
             </div>
 
             <button
@@ -243,76 +229,21 @@
                 class="see-more"
                 (click)="irParaTitulos()"
             >
-                Ver todos
+                Ver mais
                 <i class="bi bi-arrow-right"></i>
             </button>
 
         </div>
 
+        <div class="empty-content">
 
-        <div class="content-grid">
-
-            <div class="content-card">
-
-                <div class="content-cover">
-                    <i class="bi bi-book"></i>
-                </div>
-
-                <div class="content-info">
-
-                    <h3>
-                        Seus conteúdos aparecerão aqui
-                    </h3>
-
-                    <p>
-                        Comece a estudar para acompanhar seu progresso.
-                    </p>
-
-                </div>
-
+            <div class="empty-icon">
+                <i class="bi bi-heart"></i>
             </div>
 
-
-            <div class="content-card">
-
-                <div class="content-cover">
-                    <i class="bi bi-file-earmark-text"></i>
-                </div>
-
-                <div class="content-info">
-
-                    <h3>
-                        Resumos e anotações
-                    </h3>
-
-                    <p>
-                        Organize seus materiais de estudo.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="content-card">
-
-                <div class="content-cover">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-
-                <div class="content-info">
-
-                    <h3>
-                        Histórico de leitura
-                    </h3>
-
-                    <p>
-                        Continue de onde você parou.
-                    </p>
-
-                </div>
-
-            </div>
+            <span>
+                Nenhum conteúdo disponível ainda.
+            </span>
 
         </div>
 
@@ -320,7 +251,7 @@
 
 
     <!-- =====================================================
-         ACESSOS RÁPIDOS
+         MAIS SEGUIDOS
     ====================================================== -->
 
     <section class="home-section">
@@ -328,107 +259,196 @@
         <div class="section-header">
 
             <div>
-
-                <h2>
-                    Acessos rápidos
-                </h2>
+                <h2>Mais seguidos</h2>
 
                 <p>
-                    Acesse rapidamente suas ferramentas.
+                    Títulos que estão sendo mais acompanhados.
                 </p>
+            </div>
+
+            <button
+                type="button"
+                class="see-more"
+                (click)="irParaTitulos()"
+            >
+                Ver mais
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+        <div class="empty-content">
+
+            <div class="empty-icon">
+                <i class="bi bi-bookmark"></i>
+            </div>
+
+            <span>
+                Nenhum título disponível ainda.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ÚLTIMOS PUBLICADOS
+    ====================================================== -->
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Últimos publicados</h2>
+
+                <p>
+                    Confira os conteúdos publicados recentemente.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="see-more"
+                (click)="irParaPublicacoes()"
+            >
+                Ver mais
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div
+            class="content-grid"
+            *ngIf="documentos.length > 0"
+        >
+
+            <div
+                class="content-card"
+                *ngFor="let documento of documentos"
+            >
+
+                <div class="content-cover">
+
+                    <i class="bi bi-book"></i>
+
+                </div>
+
+                <div class="content-info">
+
+                    <h3>
+                        {{ documento.titulo }}
+                    </h3>
+
+                    <span class="content-time">
+                        {{ tempoPublicacao(documento.dataPublicacao) }}
+                    </span>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <div class="quick-grid">
+        <div
+            class="empty-content"
+            *ngIf="documentos.length === 0"
+        >
 
-            <!-- TÍTULOS -->
+            <div class="empty-icon">
+                <i class="bi bi-file-earmark-text"></i>
+            </div>
 
-            <button
-                type="button"
-                class="quick-card"
-                (click)="irParaTitulos()"
-            >
+            <span>
+                Nenhuma publicação disponível ainda.
+            </span>
 
-                <div class="quick-icon">
-                    <i class="bi bi-bookmark"></i>
-                </div>
+        </div>
 
-                <div>
-
-                    <h3>
-                        Títulos Seguidos
-                    </h3>
-
-                    <p>
-                        Veja os títulos que você acompanha.
-                    </p>
-
-                </div>
-
-                <i class="bi bi-chevron-right arrow"></i>
-
-            </button>
+    </section>
 
 
-            <!-- CALENDÁRIO -->
+    <!-- =====================================================
+         GRUPOS
+    ====================================================== -->
 
-            <button
-                type="button"
-                class="quick-card"
-                (click)="irParaCalendario()"
-            >
+    <section class="home-section">
 
-                <div class="quick-icon">
-                    <i class="bi bi-calendar3"></i>
-                </div>
+        <div class="section-header">
 
-                <div>
+            <div>
+                <h2>Grupos</h2>
 
-                    <h3>
-                        Calendário
-                    </h3>
-
-                    <p>
-                        Organize seus horários e estudos.
-                    </p>
-
-                </div>
-
-                <i class="bi bi-chevron-right arrow"></i>
-
-            </button>
-
-
-            <!-- PERFIL -->
+                <p>
+                    Acesse seus grupos e conteúdos compartilhados.
+                </p>
+            </div>
 
             <button
                 type="button"
-                class="quick-card"
-                (click)="irParaMeuPerfil()"
+                class="see-more"
+                (click)="irParaGrupos()"
             >
-
-                <div class="quick-icon">
-                    <i class="bi bi-person"></i>
-                </div>
-
-                <div>
-
-                    <h3>
-                        Meu Perfil
-                    </h3>
-
-                    <p>
-                        Gerencie suas informações.
-                    </p>
-
-                </div>
-
-                <i class="bi bi-chevron-right arrow"></i>
-
+                Ver mais
+                <i class="bi bi-arrow-right"></i>
             </button>
+
+        </div>
+
+        <div class="empty-content">
+
+            <div class="empty-icon">
+                <i class="bi bi-people"></i>
+            </div>
+
+            <span>
+                Nenhum grupo disponível ainda.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COLEÇÕES DE USUÁRIOS
+    ====================================================== -->
+
+    <section class="home-section">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Coleções de usuários</h2>
+
+                <p>
+                    Descubra coleções compartilhadas recentemente.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="see-more"
+                (click)="irParaColecoes()"
+            >
+                Ver mais
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+        <div class="empty-content">
+
+            <div class="empty-icon">
+                <i class="bi bi-collection"></i>
+            </div>
+
+            <span>
+                Nenhuma coleção disponível ainda.
+            </span>
 
         </div>
 

@@ -69,6 +69,28 @@ export class TitulosSeguidos {
 
 
   // =========================================
+  // SEGUIR TÍTULO
+  // =========================================
+
+  seguirTitulo(titulo: Titulo): void {
+
+    console.log('Seguindo título:', titulo.titulo);
+
+  }
+
+
+  // =========================================
+  // ADICIONAR À COLEÇÃO
+  // =========================================
+
+  adicionarColecao(titulo: Titulo): void {
+
+    console.log('Adicionar à coleção:', titulo.titulo);
+
+  }
+
+
+  // =========================================
   // TÍTULOS
   // =========================================
 

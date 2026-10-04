@@ -4,13 +4,15 @@
          MENU LATERAL
     ========================================== -->
 
-  <app-sidebar></app-sidebar>
+    <app-sidebar></app-sidebar>
+
 
     <!-- =========================================
          CONTEÚDO PRINCIPAL
     ========================================== -->
 
     <main class="titulos-content">
+
 
         <!-- TÍTULO -->
 
@@ -163,17 +165,21 @@
 
         <section class="titulos-grid">
 
+
             <!-- CARDS DINÂMICOS -->
 
             <article
                 class="titulo-card"
                 *ngFor="let titulo of titulosFiltrados"
-                (click)="abrirTitulo(titulo)"
             >
+
 
                 <!-- CAPA -->
 
-                <div class="titulo-capa">
+                <div
+                    class="titulo-capa"
+                    (click)="abrirTitulo(titulo)"
+                >
 
                     <img
                         [src]="titulo.capa"
@@ -186,6 +192,7 @@
                 <!-- INFORMAÇÕES -->
 
                 <div class="titulo-info">
+
 
                     <h2>
                         {{ titulo.titulo }}
@@ -206,6 +213,62 @@
                     >
                         {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
                     </span>
+
+
+                    <!-- =================================
+                         AÇÕES
+                    ================================== -->
+
+                    <div class="titulo-acoes">
+
+
+                        <!-- LER -->
+
+                        <button
+                            type="button"
+                            class="acao-button"
+                            (click)="abrirTitulo(titulo); $event.stopPropagation()"
+                        >
+
+                            <i class="bi bi-book"></i>
+
+                            Ler
+
+                        </button>
+
+
+                        <!-- SEGUIR -->
+
+                        <button
+                            type="button"
+                            class="acao-button"
+                            (click)="seguirTitulo(titulo); $event.stopPropagation()"
+                        >
+
+                            <i class="bi bi-bookmark"></i>
+
+                            Seguir
+
+                        </button>
+
+
+                        <!-- COLEÇÃO -->
+
+                        <button
+                            type="button"
+                            class="acao-button"
+                            (click)="adicionarColecao(titulo); $event.stopPropagation()"
+                        >
+
+                            <i class="bi bi-plus-lg"></i>
+
+                            Coleção
+
+                        </button>
+
+
+                    </div>
+
 
                 </div>
 
@@ -229,8 +292,11 @@
 
             </div>
 
+
         </section>
 
+
     </main>
+
 
 </div>

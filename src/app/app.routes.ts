@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { MeuPerfil } from './components/meu-perfil/meu-perfil';
 import { MinhasPublicacoes } from './components/minhas-publicacoes/minhas-publicacoes';
+import { CriarPublicacao } from './components/criar-publicacao/criar-publicacao';
 import { TitulosSeguidos } from './components/titulos-seguidos/titulos-seguidos';
 import { PerfilPublico } from './components/perfil-publico/perfil-publico';
 import { UsuariosSeguidos } from './components/usuarios-seguidos/usuarios-seguidos';
@@ -17,6 +18,7 @@ export const routes: Routes = [
 
   { path: 'meu-perfil', component: MeuPerfil },
   { path: 'perfil-publico', component: PerfilPublico },
+  { path: 'criar-publicacao', component: CriarPublicacao },
   { path: 'titulos-seguidos', component: TitulosSeguidos },
   { path: 'usuarios-seguidos', component: UsuariosSeguidos },
   { path: 'grupos-seguidos', component: GruposSeguidos },

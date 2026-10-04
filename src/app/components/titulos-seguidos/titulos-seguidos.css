@@ -876,5 +876,104 @@
         gap: 18px;
 
     }
+    /* =========================================
+   AÇÕES DO TÍTULO
+========================================= */
+
+.titulo-acoes {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+}
+
+
+.acao-button {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 34px;
+
+    padding: 0 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 1px solid #354147;
+
+    border-radius: 6px;
+
+    background: #2b353a;
+
+    color: #b8c1c6;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.acao-button i {
+
+    font-size: 13px;
+
+}
+
+
+.acao-button:hover {
+
+    background: #354047;
+
+    color: white;
+
+    border-color: #70c9df;
+
+}
+
+
+.acao-button:first-child:hover {
+
+    color: #70c9df;
+
+}
+
+
+/* =========================================
+   AÇÕES NO CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .titulo-acoes {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .acao-button {
+
+        width: 100%;
+
+    }
+
+}
 
 }

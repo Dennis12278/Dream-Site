@@ -1,54 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-minhas-publicacoes',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     SidebarComponent
   ],
   templateUrl: './minhas-publicacoes.html',
   styleUrl: './minhas-publicacoes.css'
 })
-export class MinhasPublicacoes {
+export class MinhasPublicacoes implements OnInit {
 
   tipoSelecionado = 'Todos';
 
   statusSelecionado = 'Todos';
 
+  publicacoes: any[] = [];
 
-  // =========================================
-  // FILTRO POR TIPO
-  // =========================================
+  constructor(
+    private router: Router,
+    private apiService: ApiService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.carregarPublicacoes();
+  }
+
+  carregarPublicacoes(): void {
+
+    this.apiService.listarDocumentos().subscribe({
+      next: documentos => {
+        this.publicacoes = documentos;
+      },
+
+      error: erro => {
+        console.error('Erro ao buscar publicações:', erro);
+      }
+    });
+  }
 
   abrirTipo(): void {
-
     console.log('Tipo selecionado:', this.tipoSelecionado);
-
   }
-
-
-  // =========================================
-  // FILTRO POR STATUS
-  // =========================================
 
   abrirStatus(): void {
-
     console.log('Status selecionado:', this.statusSelecionado);
-
   }
 
-
-  // =========================================
-  // CRIAR PUBLICAÇÃO
-  // =========================================
-
   criarPublicacao(): void {
-
-    console.log('Criar publicação');
-
+    this.router.navigate(['/criar-publicacao']);
   }
 
 }
