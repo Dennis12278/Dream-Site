@@ -13,6 +13,14 @@ interface Leitura {
   lidoHa: string;
 }
 
+interface ColecaoHome {
+  usuario: string;
+  capa: string;
+  titulo: string;
+  quantidadeTitulos: number;
+  tempo: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -27,11 +35,24 @@ export class Home {
 
   documentos: any[] = [];
 
+  documentosRanking: any[] = [];
+
+  colecoesHome: ColecaoHome[] = [];
+
   historicoMinimizado = false;
 
   menuHistoricoAberto = false;
 
   paginaHistorico = 0;
+
+  paginaRanking = 0;
+
+  paginaSeguidores = 0;
+
+  paginaColecoes = 0;
+
+  rankingAtual = 'recentes';
+
 
   leituras: Leitura[] = [
     {
@@ -84,6 +105,7 @@ export class Home {
     }
   ];
 
+
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -96,19 +118,28 @@ export class Home {
   carregarDocumentos(): void {
 
     this.apiService.listarDocumentos().subscribe({
+
       next: documentos => {
 
         this.documentos = documentos
           .filter(documento => documento.publicado === true)
           .sort((a, b) => {
 
-            const dataA = new Date(a.dataPublicacao).getTime();
-            const dataB = new Date(b.dataPublicacao).getTime();
+            const dataA =
+              new Date(a.dataPublicacao).getTime();
+
+            const dataB =
+              new Date(b.dataPublicacao).getTime();
 
             return dataB - dataA;
+
           });
 
+
+        this.atualizarRanking();
+
         this.changeDetectorRef.detectChanges();
+
       },
 
       error: erro => {
@@ -119,7 +150,116 @@ export class Home {
         );
 
       }
+
     });
+
+  }
+
+
+  atualizarRanking(): void {
+
+    const inicio =
+      this.paginaRanking * 5;
+
+    this.documentosRanking =
+      this.documentos.slice(
+        inicio,
+        inicio + 5
+      );
+
+  }
+
+
+  selecionarRanking(ranking: string): void {
+
+    this.rankingAtual = ranking;
+
+    this.paginaRanking = 0;
+
+    this.atualizarRanking();
+
+  }
+
+
+  rankingProximo(): void {
+
+    if (this.paginaRanking < 1) {
+
+      this.paginaRanking++;
+
+      this.atualizarRanking();
+
+    }
+
+  }
+
+
+  rankingAnterior(): void {
+
+    if (this.paginaRanking > 0) {
+
+      this.paginaRanking--;
+
+      this.atualizarRanking();
+
+    }
+
+  }
+
+
+  seguidoresProximo(): void {
+
+    if (this.paginaSeguidores < 1) {
+
+      this.paginaSeguidores++;
+
+    }
+
+  }
+
+
+  seguidoresAnterior(): void {
+
+    if (this.paginaSeguidores > 0) {
+
+      this.paginaSeguidores--;
+
+    }
+
+  }
+
+
+  colecoesProxima(): void {
+
+    if (this.paginaColecoes < 1) {
+
+      this.paginaColecoes++;
+
+    }
+
+  }
+
+
+  colecoesAnterior(): void {
+
+    if (this.paginaColecoes > 0) {
+
+      this.paginaColecoes--;
+
+    }
+
+  }
+
+
+  get colecoesExibidas(): ColecaoHome[] {
+
+    const inicio =
+      this.paginaColecoes * 5;
+
+    return this.colecoesHome.slice(
+      inicio,
+      inicio + 5
+    );
 
   }
 
@@ -127,95 +267,158 @@ export class Home {
   tempoPublicacao(data: string): string {
 
     if (!data) {
+
       return '';
+
     }
 
-    const agora = new Date().getTime();
 
-    const publicacao = new Date(data).getTime();
+    const agora =
+      new Date().getTime();
 
-    const diferenca = agora - publicacao;
+    const publicacao =
+      new Date(data).getTime();
 
-    const minutos = Math.floor(
-      diferenca / 60000
-    );
+    const diferenca =
+      agora - publicacao;
+
+    const minutos =
+      Math.floor(
+        diferenca / 60000
+      );
+
 
     if (minutos < 1) {
+
       return 'agora';
+
     }
+
 
     if (minutos < 60) {
+
       return minutos +
-        (minutos === 1
-          ? ' minuto atrás'
-          : ' minutos atrás');
+        (
+          minutos === 1
+            ? ' minuto atrás'
+            : ' minutos atrás'
+        );
+
     }
 
-    const horas = Math.floor(
-      minutos / 60
-    );
+
+    const horas =
+      Math.floor(
+        minutos / 60
+      );
+
 
     if (horas < 24) {
+
       return horas +
-        (horas === 1
-          ? ' hora atrás'
-          : ' horas atrás');
+        (
+          horas === 1
+            ? ' hora atrás'
+            : ' horas atrás'
+        );
+
     }
 
-    const dias = Math.floor(
-      horas / 24
-    );
+
+    const dias =
+      Math.floor(
+        horas / 24
+      );
+
 
     if (dias < 30) {
+
       return dias +
-        (dias === 1
-          ? ' dia atrás'
-          : ' dias atrás');
+        (
+          dias === 1
+            ? ' dia atrás'
+            : ' dias atrás'
+        );
+
     }
 
-    const meses = Math.floor(
-      dias / 30
-    );
+
+    const meses =
+      Math.floor(
+        dias / 30
+      );
+
 
     return meses +
-      (meses === 1
-        ? ' mês atrás'
-        : ' meses atrás');
+      (
+        meses === 1
+          ? ' mês atrás'
+          : ' meses atrás'
+      );
+
   }
 
 
   irParaTitulos(): void {
-    this.router.navigate(['/titulos-seguidos']);
+
+    this.router.navigate([
+      '/titulos-seguidos'
+    ]);
+
   }
 
 
   irParaCalendario(): void {
-    this.router.navigate(['/calendario']);
+
+    this.router.navigate([
+      '/calendario'
+    ]);
+
   }
 
 
   irParaMeuPerfil(): void {
-    this.router.navigate(['/meu-perfil']);
+
+    this.router.navigate([
+      '/meu-perfil'
+    ]);
+
   }
 
 
   irParaHistorico(): void {
-    this.router.navigate(['/historico-leitura']);
+
+    this.router.navigate([
+      '/historico-leitura'
+    ]);
+
   }
 
 
   irParaPublicacoes(): void {
-    this.router.navigate(['/minhas-publicacoes']);
+
+    this.router.navigate([
+      '/minhas-publicacoes'
+    ]);
+
   }
 
 
   irParaGrupos(): void {
-    this.router.navigate(['/grupos-seguidos']);
+
+    this.router.navigate([
+      '/grupos-seguidos'
+    ]);
+
   }
 
 
   irParaColecoes(): void {
-    this.router.navigate(['/colecoes']);
+
+    this.router.navigate([
+      '/colecoes'
+    ]);
+
   }
 
 
@@ -225,12 +428,14 @@ export class Home {
 
     this.menuHistoricoAberto =
       !this.menuHistoricoAberto;
+
   }
 
 
   fecharMenuHistorico(): void {
 
     this.menuHistoricoAberto = false;
+
   }
 
 
@@ -239,6 +444,7 @@ export class Home {
     this.historicoMinimizado = true;
 
     this.menuHistoricoAberto = false;
+
   }
 
 
@@ -247,6 +453,7 @@ export class Home {
     this.historicoMinimizado = false;
 
     this.menuHistoricoAberto = false;
+
   }
 
 
@@ -255,6 +462,7 @@ export class Home {
     if (this.paginaHistorico < 1) {
 
       this.paginaHistorico++;
+
     }
 
   }
@@ -265,6 +473,7 @@ export class Home {
     if (this.paginaHistorico > 0) {
 
       this.paginaHistorico--;
+
     }
 
   }
@@ -279,6 +488,7 @@ export class Home {
       inicio,
       inicio + 5
     );
+
   }
 
 }

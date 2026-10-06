@@ -3,93 +3,19 @@
 ========================================= */
 
 .historico-page {
+
     width: 100%;
+
     min-height: calc(100vh - 90px);
+
     display: flex;
+
     background: #20272b;
+
     color: #e8edf0;
+
     box-sizing: border-box;
-}
 
-
-/* =========================================
-   MENU LATERAL
-========================================= */
-
-.profile-sidebar {
-    width: 350px;
-    min-width: 350px;
-    min-height: calc(100vh - 90px);
-    padding: 35px 25px 35px 48px;
-    box-sizing: border-box;
-    background: #20272b;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-
-/* =========================================
-   ITEM DO MENU
-========================================= */
-
-.sidebar-item {
-    width: 323px;
-    height: 60px;
-    border: none;
-    border-radius: 8px;
-    background: transparent;
-    color: #aebbc2;
-    padding: 0 22px;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    font-size: 18px;
-    text-align: left;
-    cursor: pointer;
-    transition: background .2s ease, color .2s ease;
-}
-
-.sidebar-item i {
-    width: 24px;
-    font-size: 20px;
-    text-align: center;
-    color: #aebbc2;
-    transition: color .2s ease, transform .2s ease;
-}
-
-
-/* =========================================
-   EFEITO AO PASSAR O MOUSE
-========================================= */
-
-.sidebar-item:hover {
-    background: #2b353a;
-    color: #e9edef;
-}
-
-.sidebar-item:hover i {
-    color: #5fd3ee;
-    transform: scale(1.08);
-}
-
-
-/* =========================================
-   ITEM ATIVO
-========================================= */
-
-.sidebar-item.active {
-    background: #3a474e;
-    color: #ffffff;
-}
-
-.sidebar-item.active i {
-    color: #5fd3ee;
-}
-
-.sidebar-item.active:hover {
-    background: #3a474e;
-    color: #ffffff;
 }
 
 
@@ -98,10 +24,15 @@
 ========================================= */
 
 .historico-content {
+
     flex: 1;
+
     min-width: 0;
-    padding: 45px 45px 60px 38px;
+
+    padding: 30px 20px 50px 24px;
+
     box-sizing: border-box;
+
 }
 
 
@@ -110,27 +41,103 @@
 ========================================= */
 
 .historico-header {
+
+    width: 100%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-    margin-bottom: 28px;
+
+    margin-bottom: 14px;
+
 }
+
 
 .historico-header h1 {
-    margin: 0 0 6px;
-    color: #ffffff;
-    font-size: 25px;
-    font-weight: 600;
-}
 
-.historico-header p {
     margin: 0;
-    color: #7f939d;
-    font-size: 15px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
 }
 
-.historico-header p span {
-    color: #b8c7ce;
+
+/* =========================================
+   BOTÕES DO CABEÇALHO
+========================================= */
+
+.historico-acoes {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.historico-botao {
+
+    width: 28px;
+
+    height: 28px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #252d31;
+
+    color: #71838a;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+.historico-botao:hover {
+
+    background: #303a3f;
+
+    color: #5fd3ee;
+
+}
+
+
+.historico-botao:disabled {
+
+    opacity: .35;
+
+    cursor: default;
+
+}
+
+
+.historico-botao:disabled:hover {
+
+    background: #252d31;
+
+    color: #71838a;
+
 }
 
 
@@ -139,10 +146,16 @@
 ========================================= */
 
 .leituras-grid {
+
     width: 100%;
+
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
     gap: 14px;
+
 }
 
 
@@ -151,22 +164,21 @@
 ========================================= */
 
 .leitura-card {
-    position: relative;
-    min-height: 122px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: #2a3338;
-    border-radius: 6px;
-    padding: 16px;
-    box-sizing: border-box;
+
+    min-width: 0;
+
     cursor: pointer;
-    transition: background .2s ease, transform .2s ease;
+
+    transition:
+        transform .2s ease;
+
 }
 
+
 .leitura-card:hover {
-    background: #303b40;
-    transform: translateY(-1px);
+
+    transform: translateY(-2px);
+
 }
 
 
@@ -175,19 +187,115 @@
 ========================================= */
 
 .leitura-capa {
-    width: 66px;
-    height: 92px;
-    flex-shrink: 0;
-    border-radius: 4px;
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 3 / 4;
+
+    border-radius: 5px;
+
     overflow: hidden;
-    background: #354047;
+
+    background: #293338;
+
 }
 
+
 .leitura-capa img {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     display: block;
+
+    transition:
+        transform .2s ease;
+
+}
+
+
+.leitura-card:hover .leitura-capa img {
+
+    transform: scale(1.02);
+
+}
+
+
+/* =========================================
+   PROGRESSO SOBRE A CAPA
+========================================= */
+
+.progresso {
+
+    position: absolute;
+
+    right: 7px;
+
+    bottom: 7px;
+
+    width: 27px;
+
+    height: 27px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        conic-gradient(
+            #5fd3ee var(--progresso),
+            #48565c var(--progresso)
+        );
+
+}
+
+
+/* =========================================
+   PARTE INTERNA DO CÍRCULO
+========================================= */
+
+.progresso::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 21px;
+
+    height: 21px;
+
+    border-radius: 50%;
+
+    background: #293338;
+
+}
+
+
+/* =========================================
+   PORCENTAGEM
+========================================= */
+
+.progresso span {
+
+    position: relative;
+
+    z-index: 1;
+
+    color: #ffffff;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
 }
 
 
@@ -196,74 +304,64 @@
 ========================================= */
 
 .leitura-info {
-    flex: 1;
-    min-width: 0;
-    padding-right: 45px;
-}
 
-.leitura-info h2 {
-    margin: 0 0 14px;
-    color: #e7edf0;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.3;
-}
+    width: 100%;
 
-.leitura-detalhes {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: #728890;
-    font-size: 13px;
-}
+    padding-top: 6px;
 
-.leitura-detalhes span {
-    white-space: nowrap;
-}
+    box-sizing: border-box;
 
-.leitura-detalhes i {
-    margin-right: 5px;
-    font-size: 13px;
 }
 
 
 /* =========================================
-   PROGRESSO
+   TEMPO
 ========================================= */
 
-.progresso {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    width: 42px;
-    height: 42px;
-    transform: translateY(-50%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        conic-gradient(
-            #5fd3ee var(--progresso),
-            #3c494f var(--progresso)
-        );
+.leitura-detalhes {
+
+    margin-bottom: 5px;
+
 }
 
-.progresso::before {
-    content: "";
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #2a3338;
-}
 
-.progresso span {
-    position: relative;
-    z-index: 1;
-    color: #91a8b1;
+.leitura-tempo {
+
+    color: #718691;
+
     font-size: 10px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.leitura-info h2 {
+
+    margin: 0;
+
+    color: #dce4e7;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    text-align: center;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
 }
 
 
@@ -272,123 +370,164 @@
 ========================================= */
 
 .historico-vazio {
+
     min-height: 260px;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
-    background: #2a3338;
-    border-radius: 6px;
+
+    background: #293338;
+
+    border-radius: 5px;
+
     text-align: center;
+
     padding: 40px;
+
     box-sizing: border-box;
+
 }
+
 
 .historico-vazio > i {
+
     margin-bottom: 18px;
+
     color: #5fd3ee;
+
     font-size: 36px;
+
 }
+
 
 .historico-vazio h2 {
+
     margin: 0 0 8px;
+
     color: #e7edf0;
+
     font-size: 18px;
+
     font-weight: 600;
+
 }
 
+
 .historico-vazio p {
+
     margin: 0;
-    color: #728890;
+
+    color: #718691;
+
     font-size: 14px;
+
 }
 
 
 /* =========================================
-   RESPONSIVO
+   TABLET
 ========================================= */
 
 @media (max-width: 1200px) {
 
-    .profile-sidebar {
-        width: 280px;
-        min-width: 280px;
-        padding-left: 25px;
+    .leituras-grid {
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
     }
 
-    .sidebar-item {
-        width: 100%;
-    }
+}
+
+
+/* =========================================
+   TABLET MENOR
+========================================= */
+
+@media (max-width: 950px) {
 
     .leituras-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
     }
+
 }
 
 
-@media (max-width: 850px) {
+/* =========================================
+   CELULAR
+========================================= */
 
-    .historico-page {
-        flex-direction: column;
-    }
-
-    .profile-sidebar {
-        width: 100%;
-        min-width: 0;
-        min-height: auto;
-        padding: 15px;
-        flex-direction: row;
-        overflow-x: auto;
-    }
-
-    .sidebar-item {
-        width: auto;
-        min-width: 180px;
-    }
+@media (max-width: 650px) {
 
     .historico-content {
-        padding: 30px 20px 40px;
+
+        padding: 25px 15px 40px;
+
     }
+
+
+    .leituras-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+
+    }
+
+
+    .historico-header h1 {
+
+        font-size: 16px;
+
+    }
+
+
+    .historico-botao {
+
+        width: 27px;
+
+        height: 27px;
+
+    }
+
 }
 
 
-@media (max-width: 500px) {
+/* =========================================
+   CELULAR PEQUENO
+========================================= */
 
-    .historico-content {
-        padding: 20px 15px 30px;
+@media (max-width: 400px) {
+
+    .leituras-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
     }
 
-    .leitura-card {
-        min-height: 110px;
-        padding: 12px;
-    }
-
-    .leitura-capa {
-        width: 55px;
-        height: 78px;
-    }
-
-    .leitura-info {
-        padding-right: 35px;
-    }
 
     .leitura-info h2 {
-        font-size: 14px;
+
+        font-size: 10px;
+
     }
 
-    .leitura-detalhes {
-        flex-direction: column;
-        align-items: flex-start;
+    
+    .leitura-tempo {
+
+        font-size: 9px;
+
     }
 
-    .progresso {
-        right: 12px;
-        width: 36px;
-        height: 36px;
-    }
-
-    .progresso::before {
-        width: 29px;
-        height: 29px;
-    }
 }

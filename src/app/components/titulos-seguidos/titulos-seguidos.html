@@ -14,48 +14,33 @@
     <main class="titulos-content">
 
 
-        <!-- TÍTULO -->
+        <!-- =====================================
+             CABEÇALHO
+        ====================================== -->
 
         <div class="page-title">
 
-            <h1>
-                Títulos Seguidos
-            </h1>
+            <div>
 
-            <p>
-                Títulos que você acompanha no DREAM.
-            </p>
+                <h1>
+                    Títulos Seguidos
+                </h1>
 
-        </div>
-
-
-        <!-- =====================================
-             PESQUISA
-        ====================================== -->
-
-        <div class="search-area">
-
-            <div class="search-box">
-
-                <i class="bi bi-search"></i>
-
-                <input
-                    type="text"
-                    placeholder="Pesquisar nos títulos seguidos..."
-                    [(ngModel)]="pesquisa"
-                >
+                <p>
+                    {{ titulos.length }} títulos na sua biblioteca.
+                </p>
 
             </div>
 
 
             <button
                 type="button"
-                class="filter-button"
+                class="editar-pastas"
             >
 
-                <i class="bi bi-sliders"></i>
+                <i class="bi bi-pencil"></i>
 
-                Filtros
+                Editar pastas
 
             </button>
 
@@ -131,34 +116,96 @@
 
 
         <!-- =====================================
-             ORDENAÇÃO
+             PESQUISA
+        ====================================== -->
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    type="text"
+                    placeholder="Pesquisar na sua biblioteca..."
+                    [(ngModel)]="pesquisa"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="filter-button"
+            >
+
+                <i class="bi bi-sliders"></i>
+
+                Filtros avançados
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             ORDENAÇÃO E VISUALIZAÇÃO
         ====================================== -->
 
         <div class="ordenacao">
 
-            <span>
-                Ordenar por:
-            </span>
+            <div class="ordenacao-esquerda">
+
+                <button
+                    type="button"
+                    class="ordenacao-button"
+                    [class.active]="ordenacaoAtual === 'Adicionados recentemente'"
+                    (click)="selecionarOrdenacao('Adicionados recentemente')"
+                >
+
+                    <i class="bi bi-arrow-down-short"></i>
+
+                    Adicionados recentemente
+
+                </button>
 
 
-            <button
-                type="button"
-                class="ordenacao-button"
-                [class.active]="ordenacaoAtual === 'Adicionados recentemente'"
-                (click)="selecionarOrdenacao('Adicionados recentemente')"
-            >
-                Adicionados recentemente
-            </button>
+                <button
+                    type="button"
+                    class="ordenacao-button"
+                    [class.active]="ordenacaoAtual === 'Lidos recentemente'"
+                    (click)="selecionarOrdenacao('Lidos recentemente')"
+                >
+
+                    Lidos recentemente
+
+                </button>
+
+            </div>
 
 
-            <button
-                type="button"
-                class="ordenacao-button"
-                [class.active]="ordenacaoAtual === 'Lidos recentemente'"
-                (click)="selecionarOrdenacao('Lidos recentemente')"
-            >
-                Lidos recentemente
-            </button>
+            <div class="visualizacao">
+
+                <button
+                    type="button"
+                    class="visualizacao-button active"
+                >
+
+                    <i class="bi bi-grid-3x3-gap"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="visualizacao-button"
+                >
+
+                    <i class="bi bi-list"></i>
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -170,7 +217,9 @@
         <section class="titulos-grid">
 
 
-            <!-- CARDS DINÂMICOS -->
+            <!-- =================================
+                 CARDS DINÂMICOS
+            ================================== -->
 
             <article
                 class="titulo-card"
@@ -195,22 +244,21 @@
 
                 <!-- INFORMAÇÕES -->
 
-              
+                <div class="titulo-info">
 
-<div class="titulo-info">
+                    <h2>
+                        {{ titulo.titulo }}
+                    </h2>
 
-    <h2>
-        {{ titulo.titulo }}
-    </h2>
 
-    <span
-        class="titulo-leitura"
-        *ngIf="ordenacaoAtual === 'Lidos recentemente'"
-    >
-        {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
-    </span>
+                    <span
+                        class="titulo-leitura"
+                        *ngIf="ordenacaoAtual === 'Lidos recentemente'"
+                    >
+                        {{ tempoDesdeLeitura(titulo.ultimaLeitura) }}
+                    </span>
 
-</div>
+                </div>
 
 
             </article>

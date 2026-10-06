@@ -9,10 +9,6 @@ interface Leitura {
 
   capa: string;
 
-  capituloAtual: number;
-
-  totalCapitulos: number;
-
   lidoHa: string;
 
   progresso: number;
@@ -42,6 +38,8 @@ interface Leitura {
 export class HistoricoLeitura {
 
   leituras: Leitura[] = [];
+
+  paginaAtual: number = 0;
 
 
   constructor(
@@ -114,6 +112,35 @@ export class HistoricoLeitura {
   irParaConfiguracoes(): void {
 
     this.router.navigate(['/configuracoes']);
+
+  }
+
+
+  /* =========================================
+     NAVEGAÇÃO DO HISTÓRICO
+  ========================================= */
+
+  paginaAnterior(): void {
+
+    if (this.paginaAtual > 0) {
+
+      this.paginaAtual--;
+
+    }
+
+  }
+
+
+  proximaPagina(): void {
+
+    this.paginaAtual++;
+
+  }
+
+
+  abrirMenu(): void {
+
+    console.log('Menu do histórico');
 
   }
 

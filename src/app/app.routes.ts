@@ -12,6 +12,7 @@ import { Colecoes } from './components/colecoes/colecoes';
 import { Notificacoes } from './components/notificacoes/notificacoes';
 import { Calendario } from './components/calendario/calendario';
 import { Home } from './components/home/home';
+import { Configuracoes } from './components/configuracoes/configuracoes';
 
 export const routes: Routes = [
   { path: '', component: Home, pathMatch: 'full' },
@@ -27,12 +28,7 @@ export const routes: Routes = [
   { path: 'notificacoes', component: Notificacoes },
   { path: 'minhas-publicacoes', component: MinhasPublicacoes },
 
-  {
-    path: 'configuracoes',
-    loadComponent: () =>
-      import('./components/configuracoes/configuracoes')
-        .then(m => m.Configuracoes)
-  },
+  { path: 'configuracoes', component: Configuracoes },
 
   { path: 'calendario', component: Calendario }
 ];

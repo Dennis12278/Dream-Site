@@ -38,13 +38,17 @@
 
             <div class="calendar-info">
 
-                <h3>
-                    Seu calendário de estudos
-                </h3>
+                <div class="calendar-text">
 
-                <p>
-                    Consulte suas atividades, horários e compromissos.
-                </p>
+                    <h3>
+                        Seu calendário de estudos
+                    </h3>
+
+                    <p>
+                        Consulte suas atividades, horários e compromissos.
+                    </p>
+
+                </div>
 
                 <button
                     type="button"
@@ -71,15 +75,20 @@
         <div class="history-bar">
 
             <div class="history-title">
+
                 <i class="bi bi-clock-history"></i>
-                <span>Histórico de Leitura</span>
+
+                <span>
+                    Histórico de Leitura
+                </span>
+
             </div>
 
             <div class="history-actions">
 
                 <button
                     type="button"
-                    class="history-arrow"
+                    class="history-action"
                     (click)="paginaAnteriorHistorico()"
                     [disabled]="paginaHistorico === 0"
                 >
@@ -88,39 +97,43 @@
 
                 <button
                     type="button"
-                    class="history-arrow"
+                    class="history-action"
                     (click)="proximaPaginaHistorico()"
                     [disabled]="paginaHistorico === 1"
                 >
                     <i class="bi bi-chevron-right"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="history-more"
-                    (click)="abrirMenuHistorico($event)"
-                >
-                    <i class="bi bi-three-dots-vertical"></i>
-                </button>
-
-                <div
-                    class="history-menu"
-                    *ngIf="menuHistoricoAberto"
-                >
+                <div class="history-menu-wrapper">
 
                     <button
                         type="button"
-                        (click)="irParaHistorico()"
+                        class="history-action"
+                        (click)="abrirMenuHistorico($event)"
                     >
-                        Ver todos
+                        <i class="bi bi-three-dots-vertical"></i>
                     </button>
 
-                    <button
-                        type="button"
-                        (click)="minimizarHistorico()"
+                    <div
+                        class="history-menu"
+                        *ngIf="menuHistoricoAberto"
                     >
-                        Minimizar
-                    </button>
+
+                        <button
+                            type="button"
+                            (click)="irParaHistorico()"
+                        >
+                            Ver todos
+                        </button>
+
+                        <button
+                            type="button"
+                            (click)="minimizarHistorico()"
+                        >
+                            Minimizar
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -143,17 +156,6 @@
 
                     <div class="history-cover">
 
-                        <div
-                            class="history-progress"
-                            [style.--progresso]="leitura.progresso + '%'"
-                        >
-
-                            <div class="history-progress-number">
-                                {{ leitura.progresso }}%
-                            </div>
-
-                        </div>
-
                         <i class="bi bi-book"></i>
 
                     </div>
@@ -164,18 +166,9 @@
                             {{ leitura.titulo }}
                         </h3>
 
-                        <div class="history-details">
-
-                            <span>
-                                <i class="bi bi-eye"></i>
-                                {{ leitura.lido }} / {{ leitura.total }}
-                            </span>
-
-                            <span>
-                                {{ leitura.lidoHa }}
-                            </span>
-
-                        </div>
+                        <span>
+                            {{ leitura.lidoHa }}
+                        </span>
 
                     </div>
 
@@ -209,37 +202,112 @@
 
 
     <!-- =====================================================
-         MAIS CURTIDOS
+         MAIS RECENTES / POPULARES
     ====================================================== -->
 
-    <section class="home-section">
+    <section class="ranking-section">
 
-        <div class="section-header">
+        <div class="ranking-header">
 
-            <div>
-                <h2>Mais curtidos</h2>
+            <div class="ranking-title-area">
 
-                <p>
-                    Conteúdos que estão recebendo mais curtidas.
-                </p>
+                <button
+                    type="button"
+                    class="ranking-tab"
+                    [class.active]="rankingAtual === 'recentes'"
+                    (click)="selecionarRanking('recentes')"
+                >
+                    Mais recentes
+                </button>
+
+                <button
+                    type="button"
+                    class="ranking-tab"
+                    [class.active]="rankingAtual === 'populares'"
+                    (click)="selecionarRanking('populares')"
+                >
+                    Populares
+                </button>
+
             </div>
 
-            <button
-                type="button"
-                class="see-more"
-                (click)="irParaTitulos()"
-            >
-                Ver mais
-                <i class="bi bi-arrow-right"></i>
-            </button>
+            <div class="ranking-actions">
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                    (click)="rankingAnterior()"
+                    [disabled]="paginaRanking === 0"
+                >
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                    (click)="rankingProximo()"
+                    [disabled]="paginaRanking === 1"
+                >
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                >
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+            </div>
 
         </div>
 
-        <div class="empty-content">
 
-            <div class="empty-icon">
-                <i class="bi bi-heart"></i>
-            </div>
+        <div
+            class="ranking-grid"
+            *ngIf="documentosRanking.length > 0"
+        >
+
+            <article
+                class="ranking-card"
+                *ngFor="let documento of documentosRanking; let i = index"
+            >
+
+                <div class="ranking-cover">
+
+                    <span class="ranking-position">
+                        #{{ i + 1 }}
+                    </span>
+
+                    <div class="ranking-cover-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+
+                </div>
+
+                <div class="ranking-info">
+
+                    <span class="ranking-time">
+                        {{ tempoPublicacao(documento.dataPublicacao) }}
+                    </span>
+
+                    <h3>
+                        {{ documento.titulo }}
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <div
+            class="ranking-empty"
+            *ngIf="documentosRanking.length === 0"
+        >
+
+            <i class="bi bi-book"></i>
 
             <span>
                 Nenhum conteúdo disponível ainda.
@@ -251,37 +319,60 @@
 
 
     <!-- =====================================================
-         MAIS SEGUIDOS
+         MAIS SEGUIDORES - NOVOS QUADRINHOS
     ====================================================== -->
 
-    <section class="home-section">
+    <section class="ranking-section">
 
-        <div class="section-header">
+        <div class="ranking-header">
 
-            <div>
-                <h2>Mais seguidos</h2>
+            <div class="ranking-title-area">
 
-                <p>
-                    Títulos que estão sendo mais acompanhados.
-                </p>
+                <h2>
+                    Mais seguidores
+                </h2>
+
+                <span class="ranking-subtitle">
+                    Novos quadrinhos
+                </span>
+
             </div>
 
-            <button
-                type="button"
-                class="see-more"
-                (click)="irParaTitulos()"
-            >
-                Ver mais
-                <i class="bi bi-arrow-right"></i>
-            </button>
+            <div class="ranking-actions">
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                    (click)="seguidoresAnterior()"
+                    [disabled]="paginaSeguidores === 0"
+                >
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                    (click)="seguidoresProximo()"
+                    [disabled]="paginaSeguidores === 1"
+                >
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="ranking-action"
+                >
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+            </div>
 
         </div>
 
-        <div class="empty-content">
 
-            <div class="empty-icon">
-                <i class="bi bi-bookmark"></i>
-            </div>
+        <div class="ranking-empty">
+
+            <i class="bi bi-bookmark"></i>
 
             <span>
                 Nenhum título disponível ainda.
@@ -416,42 +507,137 @@
     <!-- =====================================================
          COLEÇÕES DE USUÁRIOS
     ====================================================== -->
+<section class="colecoes-home-section">
 
-    <section class="home-section">
+    <button
+        type="button"
+        class="colecoes-ver-mais"
+        (click)="irParaColecoes()"
+    >
+        Ver mais →
+    </button>
 
-        <div class="section-header">
+    <div class="colecoes-home-header">
 
-            <div>
-                <h2>Coleções de usuários</h2>
+        <h2>
+            Coleções de usuários
+        </h2>
 
-                <p>
-                    Descubra coleções compartilhadas recentemente.
-                </p>
-            </div>
+        <div class="colecoes-home-actions">
 
             <button
                 type="button"
-                class="see-more"
-                (click)="irParaColecoes()"
+                class="colecoes-home-action"
+                (click)="colecoesAnterior()"
+                [disabled]="paginaColecoes === 0"
             >
-                Ver mais
-                <i class="bi bi-arrow-right"></i>
+                <i class="bi bi-chevron-left"></i>
+            </button>
+
+            <button
+                type="button"
+                class="colecoes-home-action"
+                (click)="colecoesProxima()"
+                [disabled]="paginaColecoes === 1"
+            >
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+            <button
+                type="button"
+                class="colecoes-home-action"
+            >
+                <i class="bi bi-three-dots-vertical"></i>
             </button>
 
         </div>
 
-        <div class="empty-content">
+    </div>
 
-            <div class="empty-icon">
-                <i class="bi bi-collection"></i>
+
+    <!-- COLEÇÕES -->
+
+    <div
+        class="colecoes-home-grid"
+        *ngIf="colecoesHome.length > 0"
+    >
+
+        <article
+            class="colecao-home-card"
+            *ngFor="let colecao of colecoesExibidas"
+            (click)="irParaColecoes()"
+        >
+
+            <div class="colecao-home-usuario">
+
+                {{ colecao.usuario }}
+
             </div>
 
+
+            <div class="colecao-home-capa">
+
+                <img
+                    *ngIf="colecao.capa"
+                    [src]="colecao.capa"
+                    [alt]="colecao.titulo"
+                >
+
+                <i
+                    *ngIf="!colecao.capa"
+                    class="bi bi-collection"
+                ></i>
+
+            </div>
+
+
+            <div class="colecao-home-meta">
+
+                <span>
+                    {{ colecao.quantidadeTitulos }}
+                    {{ colecao.quantidadeTitulos === 1
+                        ? 'título'
+                        : 'títulos'
+                    }}
+                </span>
+
+                <span>
+                    {{ colecao.tempo }}
+                </span>
+
+            </div>
+
+
+            <h3>
+                {{ colecao.titulo }}
+            </h3>
+
+        </article>
+
+    </div>
+
+
+    <!-- SEM COLEÇÕES -->
+
+    <div
+        class="colecoes-home-vazio"
+        *ngIf="colecoesHome.length === 0"
+    >
+
+        <i class="bi bi-collection"></i>
+
+        <div>
+
+            <strong>
+                Nenhuma coleção compartilhada ainda
+            </strong>
+
             <span>
-                Nenhuma coleção disponível ainda.
+                As coleções compartilhadas pelos usuários aparecerão aqui.
             </span>
 
         </div>
 
-    </section>
+    </div>
 
-</div>
+</section>
