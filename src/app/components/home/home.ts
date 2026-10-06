@@ -359,6 +359,20 @@ export class Home {
   }
 
 
+  abrirPublicacao(documento: any): void {
+
+    this.router.navigate(
+      ['/minhas-publicacoes'],
+      {
+        state: {
+          publicacao: documento
+        }
+      }
+    );
+
+  }
+
+
   irParaTitulos(): void {
 
     this.router.navigate([

@@ -24,6 +24,8 @@ export class MinhasPublicacoes implements OnInit {
 
   publicacoes: any[] = [];
 
+  publicacaoSelecionada: any = null;
+
   constructor(
     private router: Router,
     private apiService: ApiService
@@ -31,6 +33,13 @@ export class MinhasPublicacoes implements OnInit {
   }
 
   ngOnInit(): void {
+
+    const publicacao = history.state.publicacao;
+
+    if (publicacao) {
+      this.publicacaoSelecionada = publicacao;
+    }
+
     this.carregarPublicacoes();
   }
 
@@ -57,6 +66,14 @@ export class MinhasPublicacoes implements OnInit {
 
   criarPublicacao(): void {
     this.router.navigate(['/criar-publicacao']);
+  }
+
+  abrirPublicacao(publicacao: any): void {
+    this.publicacaoSelecionada = publicacao;
+  }
+
+  voltarParaPublicacoes(): void {
+    this.publicacaoSelecionada = null;
   }
 
 }

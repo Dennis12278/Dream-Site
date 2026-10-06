@@ -16,21 +16,14 @@
                 </p>
             </div>
 
-            <button
-                type="button"
-                class="see-more"
-                (click)="irParaCalendario()"
-            >
+            <button type="button" class="see-more" (click)="irParaCalendario()">
                 Ver mais
                 <i class="bi bi-arrow-right"></i>
             </button>
 
         </div>
 
-        <div
-            class="calendar-card"
-            (click)="irParaCalendario()"
-        >
+        <div class="calendar-card" (click)="irParaCalendario()">
 
             <div class="calendar-icon">
                 <i class="bi bi-calendar3"></i>
@@ -50,11 +43,7 @@
 
                 </div>
 
-                <button
-                    type="button"
-                    class="calendar-button"
-                    (click)="$event.stopPropagation(); irParaCalendario()"
-                >
+                <button type="button" class="calendar-button" (click)="$event.stopPropagation(); irParaCalendario()">
                     Abrir calendário
                     <i class="bi bi-arrow-right"></i>
                 </button>
@@ -86,50 +75,29 @@
 
             <div class="history-actions">
 
-                <button
-                    type="button"
-                    class="history-action"
-                    (click)="paginaAnteriorHistorico()"
-                    [disabled]="paginaHistorico === 0"
-                >
+                <button type="button" class="history-action" (click)="paginaAnteriorHistorico()"
+                    [disabled]="paginaHistorico === 0">
                     <i class="bi bi-chevron-left"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="history-action"
-                    (click)="proximaPaginaHistorico()"
-                    [disabled]="paginaHistorico === 1"
-                >
+                <button type="button" class="history-action" (click)="proximaPaginaHistorico()"
+                    [disabled]="paginaHistorico === 1">
                     <i class="bi bi-chevron-right"></i>
                 </button>
 
                 <div class="history-menu-wrapper">
 
-                    <button
-                        type="button"
-                        class="history-action"
-                        (click)="abrirMenuHistorico($event)"
-                    >
+                    <button type="button" class="history-action" (click)="abrirMenuHistorico($event)">
                         <i class="bi bi-three-dots-vertical"></i>
                     </button>
 
-                    <div
-                        class="history-menu"
-                        *ngIf="menuHistoricoAberto"
-                    >
+                    <div class="history-menu" *ngIf="menuHistoricoAberto">
 
-                        <button
-                            type="button"
-                            (click)="irParaHistorico()"
-                        >
+                        <button type="button" (click)="irParaHistorico()">
                             Ver todos
                         </button>
 
-                        <button
-                            type="button"
-                            (click)="minimizarHistorico()"
-                        >
+                        <button type="button" (click)="minimizarHistorico()">
                             Minimizar
                         </button>
 
@@ -142,17 +110,11 @@
         </div>
 
 
-        <div
-            class="history-content"
-            *ngIf="!historicoMinimizado"
-        >
+        <div class="history-content" *ngIf="!historicoMinimizado">
 
             <div class="history-cards">
 
-                <div
-                    class="history-card"
-                    *ngFor="let leitura of leiturasExibidas"
-                >
+                <div class="history-card" *ngFor="let leitura of leiturasExibidas">
 
                     <div class="history-cover">
 
@@ -179,20 +141,13 @@
         </div>
 
 
-        <div
-            class="history-minimized"
-            *ngIf="historicoMinimizado"
-        >
+        <div class="history-minimized" *ngIf="historicoMinimizado">
 
             <span>
                 Histórico de Leitura
             </span>
 
-            <button
-                type="button"
-                class="history-show"
-                (click)="mostrarHistorico()"
-            >
+            <button type="button" class="history-show" (click)="mostrarHistorico()">
                 MOSTRAR
             </button>
 
@@ -211,21 +166,13 @@
 
             <div class="ranking-title-area">
 
-                <button
-                    type="button"
-                    class="ranking-tab"
-                    [class.active]="rankingAtual === 'recentes'"
-                    (click)="selecionarRanking('recentes')"
-                >
+                <button type="button" class="ranking-tab" [class.active]="rankingAtual === 'recentes'"
+                    (click)="selecionarRanking('recentes')">
                     Mais recentes
                 </button>
 
-                <button
-                    type="button"
-                    class="ranking-tab"
-                    [class.active]="rankingAtual === 'populares'"
-                    (click)="selecionarRanking('populares')"
-                >
+                <button type="button" class="ranking-tab" [class.active]="rankingAtual === 'populares'"
+                    (click)="selecionarRanking('populares')">
                     Populares
                 </button>
 
@@ -233,28 +180,17 @@
 
             <div class="ranking-actions">
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                    (click)="rankingAnterior()"
-                    [disabled]="paginaRanking === 0"
-                >
+                <button type="button" class="ranking-action" (click)="rankingAnterior()"
+                    [disabled]="paginaRanking === 0">
                     <i class="bi bi-chevron-left"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                    (click)="rankingProximo()"
-                    [disabled]="paginaRanking === 1"
-                >
+                <button type="button" class="ranking-action" (click)="rankingProximo()"
+                    [disabled]="paginaRanking === 1">
                     <i class="bi bi-chevron-right"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                >
+                <button type="button" class="ranking-action">
                     <i class="bi bi-three-dots-vertical"></i>
                 </button>
 
@@ -263,15 +199,9 @@
         </div>
 
 
-        <div
-            class="ranking-grid"
-            *ngIf="documentosRanking.length > 0"
-        >
+        <div class="ranking-grid" *ngIf="documentosRanking.length > 0">
 
-            <article
-                class="ranking-card"
-                *ngFor="let documento of documentosRanking; let i = index"
-            >
+            <article class="ranking-card" *ngFor="let documento of documentosRanking; let i = index">
 
                 <div class="ranking-cover">
 
@@ -302,10 +232,7 @@
         </div>
 
 
-        <div
-            class="ranking-empty"
-            *ngIf="documentosRanking.length === 0"
-        >
+        <div class="ranking-empty" *ngIf="documentosRanking.length === 0">
 
             <i class="bi bi-book"></i>
 
@@ -340,28 +267,17 @@
 
             <div class="ranking-actions">
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                    (click)="seguidoresAnterior()"
-                    [disabled]="paginaSeguidores === 0"
-                >
+                <button type="button" class="ranking-action" (click)="seguidoresAnterior()"
+                    [disabled]="paginaSeguidores === 0">
                     <i class="bi bi-chevron-left"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                    (click)="seguidoresProximo()"
-                    [disabled]="paginaSeguidores === 1"
-                >
+                <button type="button" class="ranking-action" (click)="seguidoresProximo()"
+                    [disabled]="paginaSeguidores === 1">
                     <i class="bi bi-chevron-right"></i>
                 </button>
 
-                <button
-                    type="button"
-                    class="ranking-action"
-                >
+                <button type="button" class="ranking-action">
                     <i class="bi bi-three-dots-vertical"></i>
                 </button>
 
@@ -399,11 +315,7 @@
                 </p>
             </div>
 
-            <button
-                type="button"
-                class="see-more"
-                (click)="irParaPublicacoes()"
-            >
+            <button type="button" class="see-more" (click)="irParaPublicacoes()">
                 Ver mais
                 <i class="bi bi-arrow-right"></i>
             </button>
@@ -411,19 +323,14 @@
         </div>
 
 
-        <div
-            class="content-grid"
-            *ngIf="documentos.length > 0"
-        >
+        <div class="content-grid" *ngIf="documentos.length > 0">
 
-            <div
-                class="content-card"
-                *ngFor="let documento of documentos"
-            >
-
+            <div class="content-card" *ngFor="let documento of documentos" (click)="abrirPublicacao(documento)">
                 <div class="content-cover">
 
-                    <i class="bi bi-book"></i>
+                    <img *ngIf="documento.capa" [src]="documento.capa" [alt]="documento.titulo">
+
+                    <i *ngIf="!documento.capa" class="bi bi-book"></i>
 
                 </div>
 
@@ -444,10 +351,7 @@
         </div>
 
 
-        <div
-            class="empty-content"
-            *ngIf="documentos.length === 0"
-        >
+        <div class="empty-content" *ngIf="documentos.length === 0">
 
             <div class="empty-icon">
                 <i class="bi bi-file-earmark-text"></i>
@@ -478,11 +382,7 @@
                 </p>
             </div>
 
-            <button
-                type="button"
-                class="see-more"
-                (click)="irParaGrupos()"
-            >
+            <button type="button" class="see-more" (click)="irParaGrupos()">
                 Ver mais
                 <i class="bi bi-arrow-right"></i>
             </button>
@@ -507,137 +407,105 @@
     <!-- =====================================================
          COLEÇÕES DE USUÁRIOS
     ====================================================== -->
-<section class="colecoes-home-section">
+    <section class="colecoes-home-section">
 
-    <button
-        type="button"
-        class="colecoes-ver-mais"
-        (click)="irParaColecoes()"
-    >
-        Ver mais →
-    </button>
+        <button type="button" class="colecoes-ver-mais" (click)="irParaColecoes()">
+            Ver mais →
+        </button>
 
-    <div class="colecoes-home-header">
+        <div class="colecoes-home-header">
 
-        <h2>
-            Coleções de usuários
-        </h2>
+            <h2>
+                Coleções de usuários
+            </h2>
 
-        <div class="colecoes-home-actions">
+            <div class="colecoes-home-actions">
 
-            <button
-                type="button"
-                class="colecoes-home-action"
-                (click)="colecoesAnterior()"
-                [disabled]="paginaColecoes === 0"
-            >
-                <i class="bi bi-chevron-left"></i>
-            </button>
+                <button type="button" class="colecoes-home-action" (click)="colecoesAnterior()"
+                    [disabled]="paginaColecoes === 0">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
 
-            <button
-                type="button"
-                class="colecoes-home-action"
-                (click)="colecoesProxima()"
-                [disabled]="paginaColecoes === 1"
-            >
-                <i class="bi bi-chevron-right"></i>
-            </button>
+                <button type="button" class="colecoes-home-action" (click)="colecoesProxima()"
+                    [disabled]="paginaColecoes === 1">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
 
-            <button
-                type="button"
-                class="colecoes-home-action"
-            >
-                <i class="bi bi-three-dots-vertical"></i>
-            </button>
+                <button type="button" class="colecoes-home-action">
+                    <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+            </div>
 
         </div>
 
-    </div>
+
+        <!-- COLEÇÕES -->
+
+        <div class="colecoes-home-grid" *ngIf="colecoesHome.length > 0">
+
+            <article class="colecao-home-card" *ngFor="let colecao of colecoesExibidas" (click)="irParaColecoes()">
+
+                <div class="colecao-home-usuario">
+
+                    {{ colecao.usuario }}
+
+                </div>
 
 
-    <!-- COLEÇÕES -->
+                <div class="colecao-home-capa">
 
-    <div
-        class="colecoes-home-grid"
-        *ngIf="colecoesHome.length > 0"
-    >
+                    <img *ngIf="colecao.capa" [src]="colecao.capa" [alt]="colecao.titulo">
 
-        <article
-            class="colecao-home-card"
-            *ngFor="let colecao of colecoesExibidas"
-            (click)="irParaColecoes()"
-        >
+                    <i *ngIf="!colecao.capa" class="bi bi-collection"></i>
 
-            <div class="colecao-home-usuario">
-
-                {{ colecao.usuario }}
-
-            </div>
+                </div>
 
 
-            <div class="colecao-home-capa">
+                <div class="colecao-home-meta">
 
-                <img
-                    *ngIf="colecao.capa"
-                    [src]="colecao.capa"
-                    [alt]="colecao.titulo"
-                >
-
-                <i
-                    *ngIf="!colecao.capa"
-                    class="bi bi-collection"
-                ></i>
-
-            </div>
-
-
-            <div class="colecao-home-meta">
-
-                <span>
-                    {{ colecao.quantidadeTitulos }}
-                    {{ colecao.quantidadeTitulos === 1
+                    <span>
+                        {{ colecao.quantidadeTitulos }}
+                        {{ colecao.quantidadeTitulos === 1
                         ? 'título'
                         : 'títulos'
-                    }}
-                </span>
+                        }}
+                    </span>
+
+                    <span>
+                        {{ colecao.tempo }}
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    {{ colecao.titulo }}
+                </h3>
+
+            </article>
+
+        </div>
+
+
+        <!-- SEM COLEÇÕES -->
+
+        <div class="colecoes-home-vazio" *ngIf="colecoesHome.length === 0">
+
+            <i class="bi bi-collection"></i>
+
+            <div>
+
+                <strong>
+                    Nenhuma coleção compartilhada ainda
+                </strong>
 
                 <span>
-                    {{ colecao.tempo }}
+                    As coleções compartilhadas pelos usuários aparecerão aqui.
                 </span>
 
             </div>
 
-
-            <h3>
-                {{ colecao.titulo }}
-            </h3>
-
-        </article>
-
-    </div>
-
-
-    <!-- SEM COLEÇÕES -->
-
-    <div
-        class="colecoes-home-vazio"
-        *ngIf="colecoesHome.length === 0"
-    >
-
-        <i class="bi bi-collection"></i>
-
-        <div>
-
-            <strong>
-                Nenhuma coleção compartilhada ainda
-            </strong>
-
-            <span>
-                As coleções compartilhadas pelos usuários aparecerão aqui.
-            </span>
-
         </div>
 
-    </div>
-
-</section>
+    </section>

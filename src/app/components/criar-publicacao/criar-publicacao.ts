@@ -37,10 +37,8 @@ export class CriarPublicacao {
     if (input.files && input.files.length > 0) {
       this.arquivoSelecionado = input.files[0];
 
-      if (this.arquivoSelecionado.type.startsWith('image/')) {
+      if (!this.capaSelecionada && this.arquivoSelecionado.type.startsWith('image/')) {
         this.capaPreview = URL.createObjectURL(this.arquivoSelecionado);
-      } else {
-        this.capaPreview = '';
       }
     }
   }
@@ -72,16 +70,50 @@ export class CriarPublicacao {
       return;
     }
 
-    const documento = {
-      idUsuario: 1,
-      idTipoDocumento: 1,
-      titulo: this.titulo,
-      conteudo: this.descricao,
-      revisado: false,
-      publicado: true,
-      visibilidade: this.visibilidade,
-      dataPublicacao: new Date().toISOString()
-    };
+    const arquivoCapa = this.capaSelecionada;
+
+    if (arquivoCapa) {
+
+      const leitor = new FileReader();
+
+      leitor.onload = () => {
+
+        const documento = {
+          idUsuario: 1,
+          idTipoDocumento: 1,
+          titulo: this.titulo,
+          conteudo: this.descricao,
+          revisado: false,
+          publicado: true,
+          visibilidade: this.visibilidade,
+          dataPublicacao: new Date().toISOString(),
+          capa: leitor.result
+        };
+
+        this.salvarDocumento(documento);
+      };
+
+      leitor.readAsDataURL(arquivoCapa);
+
+    } else {
+
+      const documento = {
+        idUsuario: 1,
+        idTipoDocumento: 1,
+        titulo: this.titulo,
+        conteudo: this.descricao,
+        revisado: false,
+        publicado: true,
+        visibilidade: this.visibilidade,
+        dataPublicacao: new Date().toISOString(),
+        capa: null
+      };
+
+      this.salvarDocumento(documento);
+    }
+  }
+
+  salvarDocumento(documento: any): void {
 
     this.apiService.criarDocumento(documento).subscribe({
       next: () => {
