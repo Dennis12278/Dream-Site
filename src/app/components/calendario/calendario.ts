@@ -13,6 +13,12 @@ interface Feriado {
   nome: string;
 }
 
+interface Lembrete {
+  data: string;
+  horario: string;
+  descricao: string;
+}
+
 @Component({
   selector: 'app-calendario',
   standalone: true,
@@ -62,6 +68,21 @@ export class Calendario {
   ========================================= */
 
   horarios: string[] = [];
+
+
+  /* =========================================
+     LEMBRETES
+  ========================================= */
+
+  lembretes: Lembrete[] = [];
+
+  diaSelecionado: DiaSemana | null = null;
+
+  horarioSelecionado: string = '';
+
+  descricaoLembrete: string = '';
+
+  mostrarLembrete: boolean = false;
 
 
   /* =========================================
@@ -287,12 +308,6 @@ export class Calendario {
       return;
     }
 
-    /*
-      Se a semana contém o mês atual,
-      usamos o mês que possui mais dias
-      dentro da semana.
-    */
-
     const quantidadePorMes: {
       [mes: number]: number
     } = {};
@@ -307,7 +322,9 @@ export class Calendario {
     }
 
     let maiorQuantidade = 0;
-    let mesEscolhido = hoje.getMonth();
+
+    let mesEscolhido =
+      hoje.getMonth();
 
     for (const mes in quantidadePorMes) {
 
@@ -318,13 +335,15 @@ export class Calendario {
 
         maiorQuantidade = quantidade;
 
-        mesEscolhido = Number(mes);
+        mesEscolhido =
+          Number(mes);
 
       }
 
     }
 
-    this.mesSelecionado = mesEscolhido;
+    this.mesSelecionado =
+      mesEscolhido;
 
   }
 
@@ -519,6 +538,192 @@ export class Calendario {
     }
 
     return `${primeiro.getDate()} de ${mesesAbreviados[primeiro.getMonth()]} a ${ultimo.getDate()} de ${mesesAbreviados[ultimo.getMonth()]} de ${ultimo.getFullYear()}`;
+
+  }
+
+
+  /* =========================================
+     SELECIONAR HORÁRIO
+  ========================================= */
+
+  selecionarHorario(
+    dia: DiaSemana,
+    horario: string
+  ): void {
+
+    this.diaSelecionado = dia;
+
+    this.horarioSelecionado = horario;
+
+    const lembrete =
+      this.obterLembrete(
+        dia,
+        horario
+      );
+
+    if (lembrete) {
+
+      this.descricaoLembrete =
+        lembrete;
+
+    } else {
+
+      this.descricaoLembrete = '';
+
+    }
+
+    this.mostrarLembrete = true;
+
+  }
+
+
+  /* =========================================
+     OBTER LEMBRETE
+  ========================================= */
+
+  obterLembrete(
+    dia: DiaSemana,
+    horario: string
+  ): string | null {
+
+    const data =
+      this.formatarData(dia.data);
+
+    const lembrete =
+      this.lembretes.find(item =>
+        item.data === data &&
+        item.horario === horario
+      );
+
+    return lembrete
+      ? lembrete.descricao
+      : null;
+
+  }
+
+
+  /* =========================================
+     SALVAR LEMBRETE
+  ========================================= */
+
+  salvarLembrete(): void {
+
+    if (
+      !this.diaSelecionado ||
+      !this.horarioSelecionado
+    ) {
+      return;
+    }
+
+    const data =
+      this.formatarData(
+        this.diaSelecionado.data
+      );
+
+    const lembreteExistente =
+      this.lembretes.find(
+        item =>
+          item.data === data &&
+          item.horario ===
+            this.horarioSelecionado
+      );
+
+    if (
+      this.descricaoLembrete.trim() === ''
+    ) {
+
+      if (lembreteExistente) {
+
+        this.lembretes =
+          this.lembretes.filter(
+            item =>
+              !(
+                item.data === data &&
+                item.horario ===
+                  this.horarioSelecionado
+              )
+          );
+
+      }
+
+      this.fecharLembrete();
+
+      return;
+
+    }
+
+    if (lembreteExistente) {
+
+      lembreteExistente.descricao =
+        this.descricaoLembrete.trim();
+
+    } else {
+
+      this.lembretes.push({
+
+        data: data,
+
+        horario:
+          this.horarioSelecionado,
+
+        descricao:
+          this.descricaoLembrete.trim()
+
+      });
+
+    }
+
+    this.fecharLembrete();
+
+  }
+
+
+  /* =========================================
+     EXCLUIR LEMBRETE
+  ========================================= */
+
+  excluirLembrete(): void {
+
+    if (
+      !this.diaSelecionado ||
+      !this.horarioSelecionado
+    ) {
+      return;
+    }
+
+    const data =
+      this.formatarData(
+        this.diaSelecionado.data
+      );
+
+    this.lembretes =
+      this.lembretes.filter(
+        item =>
+          !(
+            item.data === data &&
+            item.horario ===
+              this.horarioSelecionado
+          )
+      );
+
+    this.fecharLembrete();
+
+  }
+
+
+  /* =========================================
+     FECHAR LEMBRETE
+  ========================================= */
+
+  fecharLembrete(): void {
+
+    this.mostrarLembrete = false;
+
+    this.diaSelecionado = null;
+
+    this.horarioSelecionado = '';
+
+    this.descricaoLembrete = '';
 
   }
 

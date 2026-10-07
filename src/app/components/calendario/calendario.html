@@ -265,8 +265,25 @@
             <div
               class="horario-cell"
               *ngFor="let horario of horarios"
-              [title]="dia.nome + ' - ' + horario"
+              [class.horario-selecionado]="
+                diaSelecionado?.data?.getTime() === dia.data.getTime()
+                && horarioSelecionado === horario
+              "
+              [class.tem-lembrete]="obterLembrete(dia, horario)"
+              [title]="
+                obterLembrete(dia, horario)
+                  || dia.nome + ' - ' + horario
+              "
+              (click)="selecionarHorario(dia, horario)"
             >
+
+              <span
+                class="texto-lembrete"
+                *ngIf="obterLembrete(dia, horario)"
+              >
+                {{ obterLembrete(dia, horario) }}
+              </span>
+
             </div>
 
           </div>
@@ -276,6 +293,112 @@
       </div>
 
     </section>
+
+
+    <!-- =========================================
+         FORMULÁRIO DE LEMBRETE
+    ========================================= -->
+
+    <div
+      class="lembrete-overlay"
+      *ngIf="mostrarLembrete"
+      (click)="fecharLembrete()"
+    >
+
+      <div
+        class="lembrete-card"
+        (click)="$event.stopPropagation()"
+      >
+
+        <div class="lembrete-header">
+
+          <div>
+
+            <h2>
+              Lembrete
+            </h2>
+
+            <p *ngIf="diaSelecionado">
+
+              {{ diaSelecionado.nome }}
+              {{ diaSelecionado.numero }}
+              ·
+              {{ horarioSelecionado }}
+
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            class="fechar-button"
+            (click)="fecharLembrete()"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+
+        </div>
+
+
+        <div class="lembrete-form">
+
+          <label for="descricaoLembrete">
+            Atividade ou lembrete
+          </label>
+
+          <textarea
+            id="descricaoLembrete"
+            rows="4"
+            [value]="descricaoLembrete"
+            (input)="descricaoLembrete = $any($event.target).value"
+            placeholder="Ex.: Estudar para a prova de matemática..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="lembrete-acoes">
+
+          <button
+            type="button"
+            class="botao-excluir"
+            *ngIf="
+              diaSelecionado &&
+              obterLembrete(diaSelecionado, horarioSelecionado)
+            "
+            (click)="excluirLembrete()"
+          >
+            <i class="bi bi-trash"></i>
+            Excluir
+          </button>
+
+
+          <div class="acoes-direita">
+
+            <button
+              type="button"
+              class="botao-cancelar"
+              (click)="fecharLembrete()"
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="button"
+              class="botao-salvar"
+              (click)="salvarLembrete()"
+            >
+              <i class="bi bi-check-lg"></i>
+              Salvar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </main>
 

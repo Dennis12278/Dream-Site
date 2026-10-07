@@ -358,19 +358,16 @@ export class Home {
 
   }
 
-
-  abrirPublicacao(documento: any): void {
-
-    this.router.navigate(
-      ['/minhas-publicacoes'],
-      {
-        state: {
-          publicacao: documento
-        }
+abrirPublicacao(documento: any): void {
+  this.router.navigate(
+    ['/visualizar-publicacao'],
+    {
+      state: {
+        publicacao: documento
       }
-    );
-
-  }
+    }
+  );
+}
 
 
   irParaTitulos(): void {

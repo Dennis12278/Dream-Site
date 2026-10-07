@@ -645,27 +645,187 @@
 ========================================= */
 
 .horario-cell {
-
     height: 52px;
-
     box-sizing: border-box;
-
-    background: #252e33;
-
-    border-bottom: 1px solid #303a40;
-
+    background: #ffffff;
+    border-bottom: 1px solid #dfe5e8;
     cursor: pointer;
-
-    transition:
-        background .15s ease;
-
+    transition: background .15s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-
 .horario-cell:hover {
+    background: #f2f7f9;
+}
 
-    background: #2c383d;
+.horario-cell.horario-selecionado {
+    background: #dff7fc;
+    box-shadow: inset 0 0 0 2px #58d8f2;
+}
 
+.horario-cell.tem-lembrete {
+    background: #dff7fc;
+}
+
+.texto-lembrete {
+    display: block;
+    padding: 5px 7px;
+    color: #203038;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =========================================
+   FORMULÁRIO DE LEMBRETE
+========================================= */
+
+.lembrete-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lembrete-card {
+    width: 100%;
+    max-width: 480px;
+    background: #29343a;
+    border: 1px solid #3d4b51;
+    border-radius: 8px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+}
+
+.lembrete-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #3b484e;
+}
+
+.lembrete-header h2 {
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.lembrete-header p {
+    margin: 0;
+    color: #58d8f2;
+    font-size: 13px;
+}
+
+.fechar-button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: #9eacb2;
+    cursor: pointer;
+}
+
+.fechar-button:hover {
+    background: #354248;
+    color: #ffffff;
+}
+
+.lembrete-form {
+    padding: 20px;
+}
+
+.lembrete-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #d6dfe2;
+    font-size: 13px;
+}
+
+.lembrete-form textarea {
+    width: 100%;
+    min-height: 110px;
+    box-sizing: border-box;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid #435158;
+    border-radius: 5px;
+    outline: none;
+    background: #344047;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.lembrete-form textarea:focus {
+    border-color: #58d8f2;
+}
+
+.lembrete-form textarea::placeholder {
+    color: #7b8b91;
+}
+
+.lembrete-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px 20px;
+}
+
+.acoes-direita {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.botao-excluir,
+.botao-cancelar,
+.botao-salvar {
+    border: none;
+    border-radius: 5px;
+    padding: 9px 14px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.botao-excluir {
+    background: transparent;
+    color: #e47b7b;
+}
+
+.botao-excluir:hover {
+    background: #3a3030;
+}
+
+.botao-cancelar {
+    background: #354248;
+    color: #c7d1d5;
+}
+
+.botao-cancelar:hover {
+    background: #405057;
+}
+
+.botao-salvar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #58d8f2;
+    color: #172126;
+    font-weight: 600;
+}
+
+.botao-salvar:hover {
+    background: #78e0f4;
 }
 
 
